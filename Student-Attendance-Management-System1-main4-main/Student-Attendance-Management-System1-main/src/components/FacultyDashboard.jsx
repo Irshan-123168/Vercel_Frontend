@@ -136,40 +136,70 @@ const FacultyDashboard = ({ user, students = [], onNavigateToAttendance, searchQ
         : 0;
 
     return (
-        <div className="animate-fade space-y-6">
-            <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-                <div>
-                    <h2 style={{ fontSize: '1.75rem', fontWeight: 800 }}>Welcome, {user?.username}</h2>
-                    <p style={{ color: 'var(--text-secondary)' }}>Faculty Dashboard & Management Terminal</p>
+        <div className="animate-fade" style={{ padding: '0.5rem' }}>
+            {/* ── Search Bar & Profile Avatar Row (From Screenshot) ── */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+                <div style={{ position: 'relative', width: '100%', maxWidth: '360px' }}>
+                    <svg 
+                        style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: '#9ca3af' }}
+                        width="18" 
+                        height="18" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        strokeWidth="2.5" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round"
+                    >
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                    <input 
+                        type="text" 
+                        placeholder="Search Node..." 
+                        style={{
+                            width: '100%',
+                            padding: '0.65rem 1rem 0.65rem 2.8rem',
+                            border: 'none',
+                            borderRadius: '12px',
+                            background: '#f3f4f6',
+                            fontSize: '0.9rem',
+                            color: '#111',
+                            outline: 'none',
+                            fontWeight: 500
+                        }}
+                    />
                 </div>
-                <div style={{ display: 'flex', gap: '1rem' }}>
-                    <button 
-                         onClick={handleFinalizeRegistry}
-                        className="btn btn-secondary"
-                        style={{ height: '48px', padding: '0 1.5rem', fontWeight: 700, borderColor: 'var(--success-color)', color: 'var(--success-color)' }}
-                    >
-                        <CheckCircle size={18} />
-                        Finalize Registry
-                    </button>
-                    <button 
-                        onClick={() => generateMasterReport(students)}
-                        className="btn btn-secondary"
-                        style={{ height: '48px', padding: '0 1.5rem', fontWeight: 700, borderColor: 'var(--primary-color)', color: 'var(--primary-color)' }}
-                    >
-                        <FileText size={18} />
-                        Export Master
-                    </button>
-                    <button 
-                        onClick={() => onNavigateToAttendance('reports')}
-                        className="btn btn-primary"
-                        style={{ height: '48px', padding: '0 1.5rem', fontWeight: 700 }}
-                    >
-                        <Activity size={18} />
-                        View Reports
-                    </button>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#f3f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4b5563', boxShadow: '0 2px 8px rgba(0,0,0,0.05)', cursor: 'pointer' }}>
+                        <svg 
+                            width="20" 
+                            height="20" 
+                            viewBox="0 0 24 24" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            strokeWidth="2" 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round"
+                        >
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </div>
                 </div>
-            </header>
+            </div>
 
+            {/* ── Primary View: Desired Vertical Column of Action Cards (Matches Screenshot Exactly) ── */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%', maxWidth: '300px', marginBottom: '3rem' }}>
+                <ActionButton icon={<Users />} label="Student Registry" onClick={() => onNavigateToAttendance('students')} />
+                <ActionButton icon={<CheckCircle />} label="Faculty Attendance Entry" onClick={() => onNavigateToAttendance('faculty-attendance')} />
+                <ActionButton icon={<UserPlus />} label="Member Directory" onClick={() => onNavigateToAttendance('students')} />
+                <ActionButton icon={<Download />} label="Download Registry" onClick={() => generateRegistryExport(students)} />
+                <ActionButton icon={<FileText />} label="Generate Report" onClick={() => generateStudentReport(students)} />
+                <ActionButton icon={<Clock />} label="Leave Gateway" onClick={() => onNavigateToAttendance('leave')} />
+            </div>
+
+            {/* ── Status Messages ── */}
             {status.message && (
                 <div style={{ 
                     padding: '1rem', 
@@ -182,59 +212,82 @@ const FacultyDashboard = ({ user, students = [], onNavigateToAttendance, searchQ
                     alignItems: 'center',
                     gap: '0.5rem',
                     border: status.type === 'success' ? '1px solid rgba(16, 185, 129, 0.2)' : '1px solid rgba(239, 68, 68, 0.2)',
-                    boxShadow: 'var(--shadow-sm)'
+                    boxShadow: 'var(--shadow-sm)',
+                    marginBottom: '2rem'
                 }}>
                     {status.type === 'success' ? <CheckCircle size={18} /> : <XCircle size={18} />}
                     {status.message}
                 </div>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <DashboardCard icon={<Activity />} title="Live Classes" value="04" color="#6366f1" />
-                <DashboardCard icon={<Users />} title="Total Students" value={totalStudents || "..."} color="#10b981" />
-                <DashboardCard icon={<CheckCircle />} title="Avg Attendance" value={`${avgAttendance}%`} color="#10b981" />
-                <DashboardCard icon={<Clock />} title="Pending Records" value={pendingActions} color="#f59e0b" />
-            </div>
-
-            <div className="card" style={{ padding: '1.25rem', display: 'flex', alignItems: 'center', gap: '1.5rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)' }}>
-                <span style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--text-light)', textTransform: 'uppercase' }}>Section Filter:</span>
-                <div style={{ display: 'flex', gap: '0.5rem' }}>
-                    {['All', 'A', 'B', 'C', 'D'].map(s => (
+            {/* ── Advanced Fold: Secondary Utilities & Analytical Dashboards ── */}
+            <div style={{ borderTop: '1px solid #e5e7eb', paddingTop: '3rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                
+                {/* Header Title inside Advanced Fold */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div>
+                        <h3 style={{ fontSize: '1.4rem', fontWeight: 800, margin: 0 }}>Advanced System Analytics</h3>
+                        <p style={{ color: 'var(--text-secondary)', margin: 0, fontSize: '0.85rem' }}>Overview, simulation protocols, and manual registry updates</p>
+                    </div>
+                    <div style={{ display: 'flex', gap: '0.75rem' }}>
                         <button 
-                            key={s}
-                            onClick={() => setSelectedSection(s)}
-                            style={{
-                                padding: '0.5rem 1.25rem',
-                                borderRadius: '10px',
-                                border: '1px solid var(--border-color)',
-                                background: selectedSection === s ? 'var(--primary-gradient)' : 'white',
-                                color: selectedSection === s ? 'white' : 'var(--text-primary)',
-                                fontWeight: 800,
-                                fontSize: '0.75rem',
-                                cursor: 'pointer',
-                                transition: 'all 0.2s',
-                                boxShadow: selectedSection === s ? '0 4px 12px rgba(79, 70, 229, 0.2)' : 'none'
-                            }}
+                             onClick={handleFinalizeRegistry}
+                            className="btn btn-secondary"
+                            style={{ height: '42px', padding: '0 1.2rem', fontWeight: 700, borderColor: 'var(--success-color)', color: 'var(--success-color)', fontSize: '0.8rem' }}
                         >
-                            {s === 'All' ? 'View All' : `Section ${s}`}
+                            <CheckCircle size={15} />
+                            Finalize Registry
                         </button>
-                    ))}
-                </div>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-                {/* ── Desired Vertical Column of Action Cards from the second screenshot ── */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%', maxWidth: '300px' }}>
-                    <ActionButton icon={<Users />} label="Student Registry" onClick={() => onNavigateToAttendance('students')} />
-                    <ActionButton icon={<CheckCircle />} label="Faculty Attendance Entry" onClick={() => onNavigateToAttendance('faculty-attendance')} />
-                    <ActionButton icon={<UserPlus />} label="Member Directory" onClick={() => onNavigateToAttendance('students')} />
-                    <ActionButton icon={<Download />} label="Download Registry" onClick={() => generateRegistryExport(students)} />
-                    <ActionButton icon={<FileText />} label="Generate Report" onClick={() => generateStudentReport(students)} />
-                    <ActionButton icon={<Clock />} label="Leave Gateway" onClick={() => onNavigateToAttendance('leave')} />
+                        <button 
+                            onClick={() => generateMasterReport(students)}
+                            className="btn btn-secondary"
+                            style={{ height: '42px', padding: '0 1.2rem', fontWeight: 700, borderColor: 'var(--primary-color)', color: 'var(--primary-color)', fontSize: '0.8rem' }}
+                        >
+                            <FileText size={15} />
+                            Export Master
+                        </button>
+                    </div>
                 </div>
 
-                {/* ── Recent Activity & Admin Utilities ── */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                {/* Analytical Stats Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <DashboardCard icon={<Activity />} title="Live Classes" value="04" color="#6366f1" />
+                    <DashboardCard icon={<Users />} title="Total Students" value={totalStudents || "..."} color="#10b981" />
+                    <DashboardCard icon={<CheckCircle />} title="Avg Attendance" value={`${avgAttendance}%`} color="#10b981" />
+                    <DashboardCard icon={<Clock />} title="Pending Records" value={pendingActions} color="#f59e0b" />
+                </div>
+
+                {/* Section Filter and Section Control */}
+                <div className="card" style={{ padding: '1.25rem', display: 'flex', alignItems: 'center', gap: '1.5rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)' }}>
+                    <span style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--text-light)', textTransform: 'uppercase' }}>Section Filter:</span>
+                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                        {['All', 'A', 'B', 'C', 'D'].map(s => (
+                            <button 
+                                key={s}
+                                onClick={() => setSelectedSection(s)}
+                                style={{
+                                    padding: '0.5rem 1.25rem',
+                                    borderRadius: '10px',
+                                    border: '1px solid var(--border-color)',
+                                    background: selectedSection === s ? 'var(--primary-gradient)' : 'white',
+                                    color: selectedSection === s ? 'white' : 'var(--text-primary)',
+                                    fontWeight: 800,
+                                    fontSize: '0.75rem',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.2s',
+                                    boxShadow: selectedSection === s ? '0 4px 12px rgba(79, 70, 229, 0.2)' : 'none'
+                                }}
+                            >
+                                {s === 'All' ? 'View All' : `Section ${s}`}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Secondary Cards Grid */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+                    
+                    {/* Recent Class Activity Card */}
                     <div className="card">
                         <h3 style={{ marginBottom: '1.5rem', fontWeight: 700 }}>Recent Class Activity</h3>
                         <div className="space-y-4">
@@ -248,8 +301,9 @@ const FacultyDashboard = ({ user, students = [], onNavigateToAttendance, searchQ
                         </div>
                     </div>
 
+                    {/* Maintenance and Syllabi Card */}
                     <div className="card">
-                        <h3 style={{ marginBottom: '1.5rem', fontWeight: 700 }}>Maintenance &amp; Syllabi</h3>
+                        <h3 style={{ marginBottom: '1.5rem', fontWeight: 700 }}>System Configuration &amp; Syllabi</h3>
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: '0.75rem' }}>
                             <ActionButton 
                                 icon={<Eye />} 
