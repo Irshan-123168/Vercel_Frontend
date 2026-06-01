@@ -18,6 +18,8 @@ import {
 
 // Assets
 import logoImg from "../assets/logo.png";
+import logoShieldImg from "../assets/logo_shield.png";
+import badgesBannerImg from "../assets/badges_banner.png";
 import facultyGroupImg from "../assets/staff_group.png";
 import courtyardImg from "../assets/campus_courtyard.jpg";
 import frontImg from "../assets/campus_front.jpg";
@@ -43,6 +45,7 @@ const Navbar = ({ onLogin }) => {
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
     { name: "Courses", href: "#courses" },
+    { name: "Placements", href: "#placements" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -77,23 +80,32 @@ const Navbar = ({ onLogin }) => {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "1rem",
+              gap: "0.75rem",
             }}
           >
             <img
-              src={logoImg}
+              src={logoShieldImg}
               alt="Logo"
               style={{
-                width: "50px",
-                height: "50px",
+                width: "45px",
+                height: "45px",
                 objectFit: "contain",
               }}
             />
 
+            <div style={{ display: "flex", flexDirection: "column", lineHeight: "1.1" }}>
+              <span style={{ fontSize: "0.65rem", fontWeight: "600", color: isScrolled ? "#ec4899" : "#f472b6" }}>T.E.H.R.D Trust's</span>
+              <span style={{ fontSize: "0.85rem", fontWeight: "800", color: isScrolled ? "#c026d3" : "#f0abfc" }}>Sanjay Gandhi Polytechnic</span>
+            </div>
+
             <h2
               style={{
                 color: isScrolled ? "#1e3a8a" : "white",
-                fontWeight: "800",
+                fontWeight: "900",
+                fontSize: "1.5rem",
+                marginLeft: "0.5rem",
+                borderLeft: "2px solid rgba(255,255,255,0.3)",
+                paddingLeft: "0.75rem"
               }}
             >
               SGP BALLARI
@@ -314,32 +326,47 @@ const HomePage = ({
           <div
             style={{
               background: "white",
-              borderRadius: "30px",
-              padding: "2rem",
+              borderRadius: "28px",
+              padding: "1.8rem 2.5rem",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              gap: "1.5rem",
+              gap: "1.2rem",
               width: "fit-content",
-              margin: "0 auto 2rem",
-              boxShadow: "0 25px 60px rgba(0,0,0,0.2)",
-              flexWrap: "wrap",
+              margin: "0 auto 1.5rem",
+              boxShadow: "0 20px 50px rgba(0,0,0,0.18)",
+              maxWidth: "850px",
+              flexWrap: "nowrap",
             }}
           >
+            {/* Logo */}
             <img
-              src={logoImg}
-              alt="Logo"
+              src={logoShieldImg}
+              alt="SGP Logo"
               style={{
-                width: "100px",
-                height: "100px",
+                width: "90px",
+                height: "90px",
+                objectFit: "contain",
+                flexShrink: 0,
               }}
             />
 
-            <div style={{ textAlign: "left" }}>
+            {/* Text */}
+            <div
+              style={{
+                textAlign: "left",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+              }}
+            >
               <h3
                 style={{
-                  color: "#555",
+                  color: "#444",
+                  fontSize: "1rem",
                   fontWeight: "600",
+                  margin: 0,
+                  marginBottom: "0.4rem",
                 }}
               >
                 T.E.H.R.D Trust's
@@ -347,19 +374,34 @@ const HomePage = ({
 
               <h1
                 style={{
-                  fontSize: "2.2rem",
+                  color: "#111",
+                  fontSize: "2.6rem",
                   fontWeight: "800",
-                  color: "#222",
+                  lineHeight: "1.1",
+                  margin: 0,
                 }}
               >
                 Sanjay Gandhi Polytechnic
               </h1>
 
-              <p style={{ color: "#666" }}>
-                Recognised by AICTE, New Delhi
+              <p
+                style={{
+                  color: "#555",
+                  fontSize: "0.9rem",
+                  marginTop: "0.7rem",
+                  marginBottom: "0.2rem",
+                }}
+              >
+                Recognised by AICTE, New Delhi & Govt. of Karnataka
               </p>
 
-              <p style={{ color: "#666" }}>
+              <p
+                style={{
+                  color: "#555",
+                  fontSize: "0.9rem",
+                  margin: 0,
+                }}
+              >
                 ISO 9001:2015 Certified
               </p>
             </div>
@@ -488,6 +530,78 @@ const HomePage = ({
               </>
             )}
           </div>
+        </motion.div>
+      </section>
+
+      {/* ACCREDITATION BADGES SECTION */}
+      <section
+        style={{
+          background: "#ffffff",
+          padding: "48px 20px",
+          borderBottom: "1px solid #f1f5f9",
+        }}
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          style={{
+            maxWidth: "900px",
+            margin: "0 auto",
+            textAlign: "center",
+          }}
+        >
+          <p
+            style={{
+              fontSize: "0.75rem",
+              fontWeight: "700",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "#a855f7",
+              marginBottom: "1.2rem",
+            }}
+          >
+            Accreditations &amp; Achievements
+          </p>
+
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              background: "linear-gradient(135deg, #fdf4ff 0%, #f0f9ff 100%)",
+              borderRadius: "32px",
+              padding: "24px 48px",
+              boxShadow:
+                "0 4px 24px rgba(168,85,247,0.10), 0 1.5px 6px rgba(0,0,0,0.06)",
+              border: "1px solid rgba(168,85,247,0.12)",
+            }}
+          >
+            <img
+              src={badgesBannerImg}
+              alt="NBA Accreditation | 28th Anniversary | Founder"
+              style={{
+                maxWidth: "340px",
+                width: "100%",
+                height: "auto",
+                objectFit: "contain",
+                filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.10))",
+              }}
+            />
+          </div>
+
+          <p
+            style={{
+              marginTop: "1.2rem",
+              fontSize: "0.82rem",
+              color: "#94a3b8",
+              fontWeight: "500",
+            }}
+          >
+            NBA Accredited (ME, EEE) &nbsp;·&nbsp; 28 Years of Excellence
+            &nbsp;·&nbsp; AICTE Approved
+          </p>
         </motion.div>
       </section>
 
@@ -739,88 +853,5 @@ const HomePage = ({
     </div>
   );
 };
-{/* Logo Card */}
-<div
-  style={{
-    background: "white",
-    borderRadius: "28px",
-    padding: "1.8rem 2.5rem",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: "1.2rem",
-    width: "fit-content",
-    margin: "0 auto 1.5rem",
-    boxShadow: "0 20px 50px rgba(0,0,0,0.18)",
-    maxWidth: "850px",
-    flexWrap: "nowrap",
-  }}
->
-  {/* Logo */}
-  <img
-    src={logoImg}
-    alt="SGP Logo"
-    style={{
-      width: "90px",
-      height: "90px",
-      objectFit: "contain",
-      flexShrink: 0,
-    }}
-  />
 
-  {/* Text */}
-  <div
-    style={{
-      textAlign: "left",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-    }}
-  >
-    <h3
-      style={{
-        color: "#444",
-        fontSize: "1rem",
-        fontWeight: "600",
-        margin: 0,
-        marginBottom: "0.4rem",
-      }}
-    >
-      T.E.H.R.D Trust's
-    </h3>
-
-    <h1
-      style={{
-        color: "#111",
-        fontSize: "2.6rem",
-        fontWeight: "800",
-        lineHeight: "1.1",
-        margin: 0,
-      }}
-    >
-      Sanjay Gandhi Polytechnic
-    </h1>
-
-    <p
-      style={{
-        color: "#555",
-        fontSize: "0.9rem",
-        marginTop: "0.7rem",
-        marginBottom: "0.2rem",
-      }}
-    >
-      Recognised by AICTE, New Delhi & Govt. of Karnataka
-    </p>
-
-    <p
-      style={{
-        color: "#555",
-        fontSize: "0.9rem",
-        margin: 0,
-      }}
-    >
-      ISO 9001:2015 Certified
-    </p>
-  </div>
-</div>
 export default HomePage;
