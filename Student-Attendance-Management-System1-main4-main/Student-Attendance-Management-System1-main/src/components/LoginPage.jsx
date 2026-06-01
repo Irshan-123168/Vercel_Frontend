@@ -110,13 +110,13 @@ const LoginPage = ({ onLogin, onSwitchToRegister, onBackToHome }) => {
                 {/* ── Institution Logo Card ── */}
                 <div
                     style={{
-                        background: '#f9fafb',
+                        background: 'white',
                         border: '1px solid #f1f5f9',
                         borderRadius: '16px',
-                        padding: '1rem 1.4rem',
+                        padding: '1.2rem 1.4rem',
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '1rem',
+                        gap: '1.2rem',
                         marginBottom: '1.8rem',
                         boxShadow: '0 2px 10px rgba(0,0,0,0.06)',
                     }}
@@ -124,13 +124,13 @@ const LoginPage = ({ onLogin, onSwitchToRegister, onBackToHome }) => {
                     <img
                         src={logoImg}
                         alt="SGP Logo"
-                        style={{ width: '68px', height: '68px', objectFit: 'contain', flexShrink: 0 }}
+                        style={{ width: '84px', height: '84px', objectFit: 'contain', flexShrink: 0 }}
                     />
                     <div style={{ textAlign: 'left' }}>
-                        <div style={{ fontSize: '0.68rem', color: '#6b7280', fontWeight: 600 }}>T.E.H.R.D Trust's</div>
-                        <div style={{ fontSize: '1.05rem', fontWeight: 900, color: '#111', lineHeight: '1.2' }}>Sanjay Gandhi Polytechnic</div>
-                        <div style={{ fontSize: '0.62rem', color: '#9ca3af', marginTop: '2px' }}>(Recognised by AICTE, New Delhi &amp; Govt. of Karnataka)</div>
-                        <div style={{ fontSize: '0.62rem', color: '#9ca3af' }}>ISO 9001:2015 Certified</div>
+                        <div style={{ fontSize: '0.72rem', color: '#6b7280', fontWeight: 600 }}>T.E.H.R.D Trust's</div>
+                        <div style={{ fontSize: '1.15rem', fontWeight: 900, color: '#111', lineHeight: '1.2' }}>Sanjay Gandhi Polytechnic</div>
+                        <div style={{ fontSize: '0.68rem', color: '#9ca3af', marginTop: '3px' }}>(Recognised by AICTE, New Delhi &amp; Govt. of Karnataka)</div>
+                        <div style={{ fontSize: '0.68rem', color: '#9ca3af' }}>ISO 9001:2015 Certified</div>
                     </div>
                 </div>
 
