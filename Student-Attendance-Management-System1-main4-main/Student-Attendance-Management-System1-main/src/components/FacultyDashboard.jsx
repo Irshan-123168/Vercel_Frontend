@@ -222,62 +222,74 @@ const FacultyDashboard = ({ user, students = [], onNavigateToAttendance, searchQ
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="card">
-                    <h3 style={{ marginBottom: '1.5rem', fontWeight: 700 }}>Recent Class Activity</h3>
-                    <div className="space-y-4">
-                        {recentActivity.length > 0 ? (
-                            recentActivity.map((act, i) => (
-                                <ActivityItem key={act.label + i} label={act.label} time={act.time} status={act.status} />
-                            ))
-                        ) : (
-                            <p style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-light)', fontWeight: 600 }}>No recent activity vectors detected.</p>
-                        )}
-                    </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+                {/* ── Desired Vertical Column of Action Cards from the second screenshot ── */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%', maxWidth: '300px' }}>
+                    <ActionButton icon={<Users />} label="Student Registry" onClick={() => onNavigateToAttendance('students')} />
+                    <ActionButton icon={<CheckCircle />} label="Faculty Attendance Entry" onClick={() => onNavigateToAttendance('faculty-attendance')} />
+                    <ActionButton icon={<UserPlus />} label="Member Directory" onClick={() => onNavigateToAttendance('students')} />
+                    <ActionButton icon={<Download />} label="Download Registry" onClick={() => generateRegistryExport(students)} />
+                    <ActionButton icon={<FileText />} label="Generate Report" onClick={() => generateStudentReport(students)} />
+                    <ActionButton icon={<Clock />} label="Leave Gateway" onClick={() => onNavigateToAttendance('leave')} />
                 </div>
 
-                <div className="card">
-                    <h3 style={{ marginBottom: '1.5rem', fontWeight: 700 }}>Session Protocols</h3>
-                    <div className="grid grid-cols-2 gap-4">
-                        <ActionButton icon={<Users />} label="Student Registry" onClick={() => onNavigateToAttendance('students')} />
-                        <ActionButton icon={<CheckCircle />} label="Faculty Attendance Entry" onClick={() => onNavigateToAttendance('faculty-attendance')} />
-                        <ActionButton icon={<UserPlus size={20} />} label="Member Directory" onClick={() => onNavigateToAttendance('students')} />
-                        <ActionButton icon={<Download />} label="Download Registry" onClick={() => generateRegistryExport(students)} />
-                        <ActionButton icon={<FileText />} label="Generate Report" onClick={() => generateStudentReport(students)} />
-                        <ActionButton icon={<Clock />} label="Leave Gateway" onClick={() => onNavigateToAttendance('leave')} />
-                        <ActionButton 
-                            icon={<Eye size={20} />} 
-                            label="Dark Interface" 
-                            onClick={toggleDarkMode} 
-                            highlight={settings?.darkMode} 
-                        />
-                         <ActionButton 
-                            icon={<Lock size={20} />} 
-                            label="Update Access Key" 
-                            onClick={() => setIsUpdatingKey(true)} 
-                        />
-                        <ActionButton 
-                            icon={<Trash2 size={20} />} 
-                            label="Delete Account" 
-                            onClick={onDeleteAccount} 
-                            isDanger
-                        />
-                        <ActionButton 
-                            icon={<RefreshCw size={20} />} 
-                            label="Simulate Sweep" 
-                            onClick={handleSimulateSweep} 
-                        />
-                        <ActionButton 
-                            icon={<RefreshCw size={20} />} 
-                            label="Simulate Reset" 
-                            onClick={handleSimulateReset} 
-                        />
-                        <ActionButton icon={<FileText />} label="Syllabus DCS C-25 (PDF)" onClick={() => window.open('https://dtek.karnataka.gov.in/storage/pdf-files/ACM/C_25_Draft_1_4_ComputerScience&Engineering.pdf', '_blank')} />
-                        <ActionButton icon={<FileText />} label="Syllabus C-20 (Web)" onClick={() => window.open('https://dtek.karnataka.gov.in/52/c-20-syllabus/en', '_blank')} />
-                        <ActionButton icon={<FileText />} label="Syllabus DEEE C-25 (PDF)" onClick={() => window.open('https://dtek.karnataka.gov.in/storage/pdf-files/ACM/C_25_Draft_EE_1_4_Electrical&ElectronicsEngineering.pdf', '_blank')} />
-                        <ActionButton icon={<FileText />} label="Syllabus DME C-25 (PDF)" onClick={() => window.open('https://dtek.karnataka.gov.in/storage/pdf-files/ACM/C_25_Draft_ME_1_4_MechanicalEngineering.pdf', '_blank')} />
-                        <ActionButton icon={<FileText />} label="Syllabus DMT C-25 (PDF)" onClick={() => window.open('https://dtek.karnataka.gov.in/storage/pdf-files/ACM/C_25_Draft_MT_1_4_MetallurgicalEngineering.pdf', '_blank')} />
-                        <ActionButton icon={<FileText />} label="Syllabus DCE C-25 (PDF)" onClick={() => window.open('https://dtek.karnataka.gov.in/storage/pdf-files/ACM/C_25_Draft_CE_1_4_CivilEngineering.pdf', '_blank')} />
+                {/* ── Recent Activity & Admin Utilities ── */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                    <div className="card">
+                        <h3 style={{ marginBottom: '1.5rem', fontWeight: 700 }}>Recent Class Activity</h3>
+                        <div className="space-y-4">
+                            {recentActivity.length > 0 ? (
+                                recentActivity.map((act, i) => (
+                                    <ActivityItem key={act.label + i} label={act.label} time={act.time} status={act.status} />
+                                ))
+                            ) : (
+                                <p style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-light)', fontWeight: 600 }}>No recent activity vectors detected.</p>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="card">
+                        <h3 style={{ marginBottom: '1.5rem', fontWeight: 700 }}>Maintenance &amp; Syllabi</h3>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: '0.75rem' }}>
+                            <ActionButton 
+                                icon={<Eye />} 
+                                label="Dark Interface" 
+                                onClick={toggleDarkMode} 
+                                highlight={settings?.darkMode} 
+                                mini
+                            />
+                             <ActionButton 
+                                icon={<Lock />} 
+                                label="Update Access Key" 
+                                onClick={() => setIsUpdatingKey(true)} 
+                                mini
+                            />
+                            <ActionButton 
+                                icon={<Trash2 />} 
+                                label="Delete Account" 
+                                onClick={onDeleteAccount} 
+                                isDanger
+                                mini
+                            />
+                            <ActionButton 
+                                icon={<RefreshCw />} 
+                                label="Simulate Sweep" 
+                                onClick={handleSimulateSweep} 
+                                mini
+                            />
+                            <ActionButton 
+                                icon={<RefreshCw />} 
+                                label="Simulate Reset" 
+                                onClick={handleSimulateReset} 
+                                mini
+                            />
+                            <ActionButton icon={<FileText />} label="Syllabus Computer (PDF)" onClick={() => window.open('https://dtek.karnataka.gov.in/storage/pdf-files/ACM/C_25_Draft_1_4_ComputerScience&Engineering.pdf', '_blank')} mini />
+                            <ActionButton icon={<FileText />} label="Syllabus C-20 (Web)" onClick={() => window.open('https://dtek.karnataka.gov.in/52/c-20-syllabus/en', '_blank')} mini />
+                            <ActionButton icon={<FileText />} label="Syllabus Electrical (PDF)" onClick={() => window.open('https://dtek.karnataka.gov.in/storage/pdf-files/ACM/C_25_Draft_EE_1_4_Electrical&ElectronicsEngineering.pdf', '_blank')} mini />
+                            <ActionButton icon={<FileText />} label="Syllabus Mechanical (PDF)" onClick={() => window.open('https://dtek.karnataka.gov.in/storage/pdf-files/ACM/C_25_Draft_ME_1_4_MechanicalEngineering.pdf', '_blank')} mini />
+                            <ActionButton icon={<FileText />} label="Syllabus Metallurgical (PDF)" onClick={() => window.open('https://dtek.karnataka.gov.in/storage/pdf-files/ACM/C_25_Draft_MT_1_4_MetallurgicalEngineering.pdf', '_blank')} mini />
+                            <ActionButton icon={<FileText />} label="Syllabus Civil (PDF)" onClick={() => window.open('https://dtek.karnataka.gov.in/storage/pdf-files/ACM/C_25_Draft_CE_1_4_CivilEngineering.pdf', '_blank')} mini />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -640,26 +652,85 @@ const ActivityItem = ({ label, time, status }) => (
     </div>
 );
 
-const ActionButton = ({ icon, label, onClick, highlight, isDanger }) => (
-    <button 
-        onClick={onClick}
-        className="btn btn-secondary" 
-        style={{
-            height: 'auto', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'center',
-            ...(highlight ? {
-                background: 'linear-gradient(135deg, rgba(16,185,129,0.12), rgba(5,150,105,0.08))',
-                borderColor: 'rgba(16,185,129,0.5)',
-                boxShadow: '0 0 16px rgba(16,185,129,0.15)'
-            } : {}),
-            ...(isDanger ? {
-                borderColor: 'rgba(239, 68, 68, 0.3)',
-                color: '#ef4444'
-            } : {})
-        }}
-    >
-        <span style={{ color: highlight ? '#10b981' : isDanger ? '#ef4444' : 'var(--primary-color)' }}>{icon}</span>
-        <span style={{ fontWeight: 700, fontSize: '0.8125rem', color: highlight ? '#10b981' : 'inherit' }}>{label}</span>
-    </button>
-);
+const ActionButton = ({ icon, label, onClick, highlight, isDanger, mini }) => {
+    if (mini) {
+        return (
+            <motion.button 
+                whileHover={{ scale: 1.02, translateY: -1 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={onClick}
+                className="btn btn-secondary" 
+                style={{
+                    height: 'auto', 
+                    padding: '0.75rem', 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    gap: '0.4rem', 
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'white',
+                    border: '1.5px solid #e5e7eb',
+                    borderRadius: '10px',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    ...(highlight ? {
+                        background: 'linear-gradient(135deg, rgba(16,185,129,0.08), rgba(5,150,105,0.05))',
+                        borderColor: 'rgba(16,185,129,0.3)',
+                    } : {}),
+                    ...(isDanger ? {
+                        borderColor: 'rgba(239, 68, 68, 0.2)',
+                        color: '#ef4444'
+                    } : {})
+                }}
+            >
+                <span style={{ color: highlight ? '#10b981' : isDanger ? '#ef4444' : '#6366f1', display: 'flex', alignItems: 'center' }}>
+                    {React.cloneElement(icon, { size: 16 })}
+                </span>
+                <span style={{ fontWeight: 700, fontSize: '0.72rem', color: highlight ? '#10b981' : '#4b5563', textAlign: 'center' }}>{label}</span>
+            </motion.button>
+        );
+    }
+
+    return (
+        <motion.button 
+            whileHover={{ scale: 1.02, translateY: -2 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={onClick}
+            style={{
+                width: '100%',
+                maxWidth: '300px',
+                height: '96px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.6rem',
+                background: 'white',
+                border: '1.5px solid #e5e7eb',
+                borderRadius: '16px',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.02)',
+                cursor: 'pointer',
+                transition: 'all 0.25s ease',
+                outline: 'none',
+                ...(highlight ? {
+                    background: 'linear-gradient(135deg, rgba(16,185,129,0.05), rgba(5,150,105,0.02))',
+                    borderColor: 'rgba(16,185,129,0.3)',
+                    boxShadow: '0 8px 24px rgba(16,185,129,0.08)'
+                } : {}),
+                ...(isDanger ? {
+                    borderColor: 'rgba(239, 68, 68, 0.2)',
+                    color: '#ef4444'
+                } : {})
+            }}
+        >
+            <span style={{ color: highlight ? '#10b981' : isDanger ? '#ef4444' : '#6366f1', display: 'flex', alignItems: 'center' }}>
+                {React.cloneElement(icon, { size: 24 })}
+            </span>
+            <span style={{ fontWeight: 700, fontSize: '0.85rem', color: highlight ? '#10b981' : '#1f2937' }}>
+                {label}
+            </span>
+        </motion.button>
+    );
+};
 
 export default FacultyDashboard;
