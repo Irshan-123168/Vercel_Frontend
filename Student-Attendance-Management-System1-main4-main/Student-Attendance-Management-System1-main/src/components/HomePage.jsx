@@ -23,8 +23,8 @@ import badgesBannerImg from "../assets/badges_banner.png";
 import facultyGroupImg from "../assets/staff_group.png";
 import courtyardImg from "../assets/campus_courtyard.jpg";
 import frontImg from "../assets/campus_front.jpg";
-import labImg from "../assets/computer_lab.jpg";
-import classroomImg from "../assets/classroom_session.png";
+import labImg from "../assets/computer_lab.jpg";  
+import classroomImg from "../assets/classroom_session.png";   
 import facultyMeetingImg from "../assets/faculty_meeting.png";
 
 const Navbar = ({ onLogin }) => {
@@ -603,6 +603,265 @@ const HomePage = ({
             &nbsp;·&nbsp; AICTE Approved
           </p>
         </motion.div>
+      </section>
+
+      {/* ABOUT SECTION */}
+      <section
+        id="about"
+        style={{
+          padding: "100px 20px",
+          background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%)",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        {/* Background glow blobs */}
+        <div style={{ position: "absolute", top: "-80px", left: "-80px", width: "400px", height: "400px", background: "rgba(168,85,247,0.12)", borderRadius: "50%", filter: "blur(100px)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", bottom: "-80px", right: "-80px", width: "350px", height: "350px", background: "rgba(236,72,153,0.10)", borderRadius: "50%", filter: "blur(100px)", pointerEvents: "none" }} />
+
+        <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 1 }}>
+
+          {/* Section label */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            style={{
+              textAlign: "center",
+              fontSize: "0.75rem",
+              fontWeight: "700",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              color: "#a855f7",
+              marginBottom: "0.8rem",
+            }}
+          >
+            Who We Are
+          </motion.p>
+
+          {/* Heading */}
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            style={{
+              textAlign: "center",
+              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              fontWeight: "900",
+              color: "white",
+              marginBottom: "1rem",
+              lineHeight: "1.1",
+            }}
+          >
+            About{" "}
+            <span style={{ background: "linear-gradient(90deg, #ec4899, #a855f7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              SGP Ballari
+            </span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            style={{
+              textAlign: "center",
+              color: "rgba(255,255,255,0.65)",
+              fontSize: "1.05rem",
+              maxWidth: "680px",
+              margin: "0 auto 4rem",
+              lineHeight: "1.8",
+            }}
+          >
+            Established under the T.E.H.R.D Trust, Sanjay Gandhi Polytechnic has
+            been a pillar of technical education in Ballari for over 28 years,
+            nurturing thousands of engineers and technologists.
+          </motion.p>
+
+          {/* Stats Row */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+              gap: "1.5rem",
+              marginBottom: "5rem",
+            }}
+          >
+            {[
+              { value: "28+", label: "Years of Excellence" },
+              { value: "6",   label: "Departments" },
+              { value: "NBA", label: "Accredited (ME & EEE)" },
+              { value: "2000+", label: "Alumni Strong" },
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ y: -6, scale: 1.04 }}
+                style={{
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  borderRadius: "20px",
+                  padding: "2rem 1.5rem",
+                  textAlign: "center",
+                  backdropFilter: "blur(12px)",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "2.4rem",
+                    fontWeight: "900",
+                    background: "linear-gradient(135deg, #ec4899, #a855f7)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    marginBottom: "0.5rem",
+                  }}
+                >
+                  {stat.value}
+                </div>
+                <div style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.9rem", fontWeight: "600" }}>
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Two-column: image + vision/mission */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+              gap: "3rem",
+              alignItems: "center",
+            }}
+          >
+            {/* Faculty Image */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              style={{
+                borderRadius: "28px",
+                overflow: "hidden",
+                boxShadow: "0 25px 60px rgba(0,0,0,0.5)",
+                border: "2px solid rgba(168,85,247,0.25)",
+              }}
+            >
+              <img
+                src={facultyGroupImg}
+                alt="SGP Faculty"
+                style={{ width: "100%", height: "380px", objectFit: "cover", display: "block" }}
+              />
+            </motion.div>
+
+            {/* Vision / Mission / Principal Quote */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              style={{ display: "flex", flexDirection: "column", gap: "2rem" }}
+            >
+              {/* Vision */}
+              <div
+                style={{
+                  background: "rgba(168,85,247,0.1)",
+                  border: "1px solid rgba(168,85,247,0.25)",
+                  borderRadius: "20px",
+                  padding: "1.8rem",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.8rem" }}>
+                  <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#a855f7", flexShrink: 0 }} />
+                  <h3 style={{ color: "#a855f7", fontWeight: "800", fontSize: "1rem", margin: 0 }}>Our Vision</h3>
+                </div>
+                <p style={{ color: "rgba(255,255,255,0.75)", lineHeight: "1.7", margin: 0, fontSize: "0.95rem" }}>
+                  To be a premier technical institution that empowers students with
+                  knowledge, skills, and ethical values to meet global engineering
+                  challenges.
+                </p>
+              </div>
+
+              {/* Mission */}
+              <div
+                style={{
+                  background: "rgba(236,72,153,0.1)",
+                  border: "1px solid rgba(236,72,153,0.25)",
+                  borderRadius: "20px",
+                  padding: "1.8rem",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.8rem" }}>
+                  <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#ec4899", flexShrink: 0 }} />
+                  <h3 style={{ color: "#ec4899", fontWeight: "800", fontSize: "1rem", margin: 0 }}>Our Mission</h3>
+                </div>
+                <p style={{ color: "rgba(255,255,255,0.75)", lineHeight: "1.7", margin: 0, fontSize: "0.95rem" }}>
+                  To provide quality technical education through innovative teaching,
+                  industry collaboration, and state-of-the-art infrastructure, building
+                  competent and socially responsible professionals.
+                </p>
+              </div>
+
+              {/* Principal's Quote */}
+              <div
+                style={{
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  borderRadius: "20px",
+                  padding: "1.6rem",
+                  position: "relative",
+                }}
+              >
+                <span style={{ fontSize: "3rem", lineHeight: "1", color: "#a855f7", opacity: 0.4, position: "absolute", top: "0.5rem", left: "1.2rem" }}>"</span>
+                <p style={{ color: "rgba(255,255,255,0.7)", lineHeight: "1.7", margin: "1rem 0 1rem", fontSize: "0.9rem", fontStyle: "italic" }}>
+                  Education at SGP is not merely about degrees — it is about building
+                  character, competence, and a commitment to serve society.
+                </p>
+                <p style={{ color: "#a855f7", fontWeight: "700", fontSize: "0.85rem", margin: 0 }}>
+                  — Principal, Sanjay Gandhi Polytechnic
+                </p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* AICTE / ISO tags */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            style={{
+              marginTop: "4rem",
+              display: "flex",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              gap: "1rem",
+            }}
+          >
+            {["AICTE Approved", "ISO 9001:2015 Certified", "Govt. of Karnataka Recognised", "NBA Accredited"].map((tag) => (
+              <div
+                key={tag}
+                style={{
+                  background: "rgba(255,255,255,0.07)",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  borderRadius: "50px",
+                  padding: "0.6rem 1.4rem",
+                  color: "rgba(255,255,255,0.8)",
+                  fontSize: "0.82rem",
+                  fontWeight: "600",
+                }}
+              >
+                ✓ {tag}
+              </div>
+            ))}
+          </motion.div>
+
+        </div>
       </section>
 
       {/* CAMPUS SECTION */}
