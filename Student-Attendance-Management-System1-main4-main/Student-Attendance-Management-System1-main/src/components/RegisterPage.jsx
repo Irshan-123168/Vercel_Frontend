@@ -479,5 +479,4 @@ const RegisterPage = ({ onRegister, onSwitchToLogin, onBackToHome }) => {
         </div>
     );
 };
-
 export default RegisterPage;
