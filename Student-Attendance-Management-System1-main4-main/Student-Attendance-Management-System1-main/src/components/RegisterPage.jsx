@@ -166,7 +166,6 @@ const RegisterPage = ({ onRegister, onSwitchToLogin, onBackToHome }) => {
                         <div style={{ fontSize: '0.68rem', color: '#9ca3af' }}>ISO 9001:2015 Certified</div>
                     </div>
                 </div>
-
                 {/* ── Heading ── */}
                 <div style={{ textAlign: 'center', marginBottom: '1.8rem' }}>
                     <h2 style={{ fontSize: '1.75rem', fontWeight: 900, color: '#111', marginBottom: '0.35rem' }}>
@@ -195,7 +194,6 @@ const RegisterPage = ({ onRegister, onSwitchToLogin, onBackToHome }) => {
                             />
                         </div>
                     </div>
-
                     {/* Username */}
                     <div>
                         <label style={labelStyle}>Username</label>
