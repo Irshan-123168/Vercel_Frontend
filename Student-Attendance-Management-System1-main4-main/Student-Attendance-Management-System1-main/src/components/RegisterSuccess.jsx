@@ -16,6 +16,50 @@ const RegisterSuccess = ({ onContinue }) => {
                 overflow: 'hidden'
             }}
         >
+            {/* Animated Background */}
+            <motion.div
+              animate={{
+                backgroundPosition: [
+                  "0% 50%",
+                  "100% 50%",
+                  "0% 50%",
+                ],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(-45deg, #7c3aed, #c026d3, #ec4899, #2563eb, #06b6d4)",
+                backgroundSize: "400% 400%",
+                zIndex: 0,
+              }}
+            />
+            <motion.div
+                animate={{
+                    x: [0, 80, -60, 0],
+                    y: [0, 60, -100, 0],
+                }}
+                transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                }}
+                style={{
+                    position: "absolute",
+                    top: "35%",
+                    left: "45%",
+                    width: "350px",
+                    height: "350px",
+                    background: "rgba(255,255,255,0.08)",
+                    borderRadius: "50%",
+                    filter: "blur(90px)",
+                }}
+            />
             {/* Subtle background glow blobs */}
             <div style={{ position: 'absolute', top: '-100px', left: '-100px', width: '450px', height: '450px', background: 'rgba(255,255,255,0.07)', borderRadius: '50%', filter: 'blur(80px)', pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', bottom: '-80px', right: '-80px', width: '380px', height: '380px', background: 'rgba(0,0,0,0.12)', borderRadius: '50%', filter: 'blur(80px)', pointerEvents: 'none' }} />
