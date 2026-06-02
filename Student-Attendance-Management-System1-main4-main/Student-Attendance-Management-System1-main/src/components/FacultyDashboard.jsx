@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import "../index.css";
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Activity, Users, CheckCircle, Clock, Download, FileText, UserPlus,
