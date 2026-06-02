@@ -41,14 +41,17 @@ const Navbar = ({ onLogin }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Courses", href: "#courses" },
-    { name: "Placements", href: "#placements" },
-    { name: "Contact", href: "#contact" },
-  ];
-
+const navItems = [
+  { name: "Home", href: "#home" },
+  { name: "About", href: "#about" },
+  { name: "Courses", href: "#courses" },
+  {
+    name: "Placements",
+    href: "https://www.sgp.edu.in/index.php/placements/placement-training.html",
+    external: true,
+  },
+  { name: "Contact", href: "#contact" },
+];
   return (
     <>
       <header
@@ -75,43 +78,38 @@ const Navbar = ({ onLogin }) => {
             alignItems: "center",
           }}
         >
-          {/* Logo */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "0.75rem",
-            }}
-          >
-            <img
-              src={logoShieldImg}
-              alt="Logo"
-              style={{
-                width: "45px",
-                height: "45px",
-                objectFit: "contain",
-              }}
-            />
+          {/* Logo Section */}
+<div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    gap: "14px",
+  }}
+>
+  {/* College Logo Banner */}
+  <img
+    src={logoImg}
+    alt="Sanjay Gandhi Polytechnic"
+    style={{
+      height: "55px",
+      width: "auto",
+      objectFit: "contain",
+    }}
+  />
 
-            <div style={{ display: "flex", flexDirection: "column", lineHeight: "1.1" }}>
-              <span style={{ fontSize: "0.65rem", fontWeight: "600", color: isScrolled ? "#ec4899" : "#f472b6" }}>T.E.H.R.D Trust's</span>
-              <span style={{ fontSize: "0.85rem", fontWeight: "800", color: isScrolled ? "#c026d3" : "#f0abfc" }}>Sanjay Gandhi Polytechnic</span>
-            </div>
-
-            <h2
-              style={{
-                color: isScrolled ? "#1e3a8a" : "white",
-                fontWeight: "900",
-                fontSize: "1.5rem",
-                marginLeft: "0.5rem",
-                borderLeft: "2px solid rgba(255,255,255,0.3)",
-                paddingLeft: "0.75rem"
-              }}
-            >
-              SGP BALLARI
-            </h2>
-          </div>
-
+  {/* College Name */}
+  <h2
+    style={{
+      color: isScrolled ? "#1e3a8a" : "#ffffff",
+      fontWeight: "900",
+      fontSize: "1.8rem",
+      margin: 0,
+      letterSpacing: "0.5px",
+    }}
+  >
+    SGP BALLARI
+        </h2>
+        </div>
           {/* Desktop Nav */}
           <nav
             className="desktop-nav"
@@ -503,34 +501,6 @@ const HomePage = ({
               </p>
             </div>
           </div>
-
-          {/* Badge */}
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "12px",
-              background: "rgba(255,255,255,0.12)",
-              border: "1px solid rgba(255,255,255,0.2)",
-              padding: "14px 28px",
-              borderRadius: "20px",
-              backdropFilter: "blur(20px)",
-              color: "white",
-              marginBottom: "3rem",
-            }}
-          >
-            <div
-              style={{
-                width: "10px",
-                height: "10px",
-                borderRadius: "50%",
-                background: "#22c55e",
-              }}
-            />
-
-            Institution Branding Badges
-          </div>
-
           {/* Heading */}
           <h1
             style={{
@@ -1091,7 +1061,6 @@ const HomePage = ({
           </div>
         </div>
       </section>
-
       {/* FOOTER */}
       <footer
         id="contact"

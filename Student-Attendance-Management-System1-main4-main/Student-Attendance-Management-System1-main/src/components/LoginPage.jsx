@@ -244,10 +244,10 @@ const LoginPage = ({ onLogin, onSwitchToRegister, onBackToHome }) => {
                         background: 'white',
                         border: '1px solid #f1f5f9',
                         borderRadius: '16px',
-                        padding: '1.2rem 1.4rem',
+                        padding: '1.2rem 1.5rem',
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '1.2rem',
+                        gap: '1.3rem',
                         marginBottom: '1.8rem',
                         boxShadow: '0 2px 10px rgba(0,0,0,0.06)',
                     }}
@@ -259,8 +259,9 @@ const LoginPage = ({ onLogin, onSwitchToRegister, onBackToHome }) => {
                     />
                     <div style={{ textAlign: 'left' }}>
                         <div style={{ fontSize: '0.72rem', color: '#6b7280', fontWeight: 600 }}>T.E.H.R.D Trust's</div>
-                        <div style={{ fontSize: '1.15rem', fontWeight: 900, color: '#111', lineHeight: '1.2' }}>Sanjay Gandhi Polytechnic</div>
+                        <div style={{ fontSize: '1.15rem', fontWeight: 900, color: '#111', lineHeight: '1.3' }}>Sanjay Gandhi Polytechnic</div>
                         <div style={{ fontSize: '0.68rem', color: '#9ca3af', marginTop: '3px' }}>(Recognised by AICTE, New Delhi &amp; Govt. of Karnataka)</div>
+                        <div style={{ textAlign: 'left', minWidth: '250px' }}></div>
                         <div style={{ fontSize: '0.68rem', color: '#9ca3af' }}>ISO 9001:2015 Certified</div>
                     </div>
                 </div>

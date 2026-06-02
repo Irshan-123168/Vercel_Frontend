@@ -161,7 +161,7 @@ const RegisterPage = ({ onRegister, onSwitchToLogin, onBackToHome }) => {
                     />
                     <div style={{ textAlign: 'left' }}>
                         <div style={{ fontSize: '0.72rem', color: '#6b7280', fontWeight: 600 }}>T.E.H.R.D Trust's</div>
-                        <div style={{ fontSize: '1.15rem', fontWeight: 900, color: '#111', lineHeight: '1.2' }}>Sanjay Gandhi Polytechnic</div>
+                        <div style={{ fontSize: '1.15rem', fontWeight: 900, color: '#111', lineHeight: '1.1' }}>Sanjay Gandhi Polytechnic</div>
                         <div style={{ fontSize: '0.68rem', color: '#9ca3af', marginTop: '3px' }}>(Recognised by AICTE, New Delhi &amp; Govt. of Karnataka)</div>
                         <div style={{ fontSize: '0.68rem', color: '#9ca3af' }}>ISO 9001:2015 Certified</div>
                     </div>
