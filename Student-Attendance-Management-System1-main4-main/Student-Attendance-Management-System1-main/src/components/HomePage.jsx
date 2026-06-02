@@ -270,21 +270,93 @@ const HomePage = ({
       <Navbar onLogin={onLogin} />
 
       {/* HERO SECTION */}
-      <section
-        id="home"
-        style={{
-          minHeight: "100vh",
-          background:
-            "linear-gradient(135deg,#ec4899 0%,#c026d3 50%,#7e22ce 100%)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          position: "relative",
-          overflow: "hidden",
-          padding: "120px 20px",
-        }}
-      >
+ <section
+  id="home"
+  style={{
+    minHeight: "100vh",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "relative",
+    overflow: "hidden",
+    padding: "120px 20px",
+    background:
+      "linear-gradient(-45deg, #67e41eff, #5fe9d6fb, #3caecaff, #db3fe0ff, #157cf1ff)",
+    backgroundSize: "500% 500%",
+    animation: "gradientMove 15s ease infinite",
+  }}
+>
         {/* Glow Effects */}
+        {/* Animated Blob 1 */}
+<motion.div
+  animate={{
+    x: [0, 150, -100, 0],
+    y: [0, -100, 80, 0],
+    scale: [1, 1.3, 0.9, 1],
+  }}
+  transition={{
+    duration: 18,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  style={{
+    position: "absolute",
+    width: "500px",
+    height: "500px",
+    borderRadius: "50%",
+    background: "rgba(255,0,128,0.35)",
+    filter: "blur(120px)",
+    top: "-10%",
+    left: "-5%",
+  }}
+/>
+
+{/* Animated Blob 2 */}
+<motion.div
+  animate={{
+    x: [0, -120, 100, 0],
+    y: [0, 120, -80, 0],
+    scale: [1, 0.8, 1.2, 1],
+  }}
+  transition={{
+    duration: 22,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  style={{
+    position: "absolute",
+    width: "550px",
+    height: "550px",
+    borderRadius: "50%",
+    background: "rgba(0,255,255,0.3)",
+    filter: "blur(140px)",
+    bottom: "-10%",
+    right: "-10%",
+  }}
+/>
+
+{/* Animated Blob 3 */}
+<motion.div
+  animate={{
+    x: [0, 80, -80, 0],
+    y: [0, 100, -100, 0],
+  }}
+  transition={{
+    duration: 25,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  style={{
+    position: "absolute",
+    width: "400px",
+    height: "400px",
+    borderRadius: "50%",
+    background: "rgba(255,255,0,0.25)",
+    filter: "blur(120px)",
+    top: "30%",
+    left: "35%",
+  }}
+/>
         <div
           style={{
             position: "absolute",
@@ -322,6 +394,31 @@ const HomePage = ({
             maxWidth: "1100px",
           }}
         >
+          <style>
+{`
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media(max-width:768px){
+  .desktop-nav{
+    display:none !important;
+  }
+
+  .mobile-menu{
+    display:block !important;
+  }
+}
+`}
+</style>
           {/* Logo Card */}
           <div
             style={{

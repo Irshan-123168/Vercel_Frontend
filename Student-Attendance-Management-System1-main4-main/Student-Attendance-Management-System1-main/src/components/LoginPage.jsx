@@ -76,17 +76,148 @@ const LoginPage = ({ onLogin, onSwitchToRegister, onBackToHome }) => {
 
     return (
         <div
-            style={{
-                minHeight: '100vh',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '2rem',
-                background: 'linear-gradient(135deg, #7c3aed 0%, #c026d3 40%, #db2777 75%, #ec4899 100%)',
-                position: 'relative',
-                overflow: 'hidden',
-            }}
-        >
+    style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '2rem',
+        position: 'relative',
+        overflow: 'hidden',
+    }}
+>
+    <motion.div
+    animate={{
+        x: [0, 80, -60, 0],
+        y: [0, 60, -100, 0],
+    }}
+    transition={{
+        duration: 20,
+        repeat: Infinity,
+        ease: "easeInOut",
+    }}
+    style={{
+        position: "absolute",
+        top: "35%",
+        left: "45%",
+        width: "350px",
+        height: "350px",
+        background: "rgba(255,255,255,0.08)",
+        borderRadius: "50%",
+        filter: "blur(90px)",
+    }}
+/>
+    {/* Animated Gradient Background */}
+    <motion.div
+        animate={{
+            background: [
+                "linear-gradient(135deg,#7c3aed,#c026d3,#ec4899)",
+                "linear-gradient(135deg,#2563eb,#7c3aed,#c026d3)",
+                "linear-gradient(135deg,#06b6d4,#2563eb,#7c3aed)",
+                "linear-gradient(135deg,#ec4899,#7c3aed,#2563eb)",
+                "linear-gradient(135deg,#7c3aed,#c026d3,#ec4899)"
+            ]
+        }}
+        transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "linear"
+        }}
+        style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 0,
+        }}
+    />
+    <motion.div
+    animate={{
+        x: [0, 120, -80, 0],
+        y: [0, -80, 100, 0],
+        scale: [1, 1.2, 0.9, 1],
+    }}
+    transition={{
+        duration: 18,
+        repeat: Infinity,
+        ease: "easeInOut",
+    }}
+    style={{
+        position: "absolute",
+        top: "-120px",
+        left: "-120px",
+        width: "500px",
+        height: "500px",
+        background: "rgba(255,255,255,0.15)",
+        borderRadius: "50%",
+        filter: "blur(100px)",
+    }}
+/>
+
+<motion.div
+    animate={{
+        x: [0, -120, 80, 0],
+        y: [0, 120, -80, 0],
+        scale: [1, 0.8, 1.3, 1],
+    }}
+    transition={{
+        duration: 22,
+        repeat: Infinity,
+        ease: "easeInOut",
+    }}
+    style={{
+        position: "absolute",
+        bottom: "-120px",
+        right: "-120px",
+        width: "450px",
+        height: "450px",
+        background: "rgba(255,255,255,0.12)",
+        borderRadius: "50%",
+        filter: "blur(100px)",
+    }}
+/>
+{/* Animated Background */}
+<motion.div
+  animate={{
+    backgroundPosition: [
+      "0% 50%",
+      "100% 50%",
+      "0% 50%",
+    ],
+  }}
+  transition={{
+    duration: 20,
+    repeat: Infinity,
+    ease: "linear",
+  }}
+  style={{
+    position: "absolute",
+    inset: 0,
+    background:
+      "linear-gradient(-45deg, #7c3aed, #c026d3, #ec4899, #2563eb, #06b6d4)",
+    backgroundSize: "400% 400%",
+    zIndex: 0,
+  }}
+/>
+<motion.div
+    animate={{
+        x: [0, 80, -60, 0],
+        y: [0, 60, -100, 0],
+    }}
+    transition={{
+        duration: 20,
+        repeat: Infinity,
+        ease: "easeInOut",
+    }}
+    style={{
+        position: "absolute",
+        top: "35%",
+        left: "45%",
+        width: "350px",
+        height: "350px",
+        background: "rgba(255,255,255,0.08)",
+        borderRadius: "50%",
+        filter: "blur(90px)",
+    }}
+/>
             {/* Subtle background glow blobs */}
             <div style={{ position: 'absolute', top: '-100px', left: '-100px', width: '420px', height: '420px', background: 'rgba(255,255,255,0.07)', borderRadius: '50%', filter: 'blur(80px)', pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', bottom: '-80px', right: '-80px', width: '360px', height: '360px', background: 'rgba(0,0,0,0.12)', borderRadius: '50%', filter: 'blur(80px)', pointerEvents: 'none' }} />
