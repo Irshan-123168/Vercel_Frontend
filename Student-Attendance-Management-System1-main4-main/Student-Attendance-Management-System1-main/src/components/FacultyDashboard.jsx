@@ -268,15 +268,15 @@ const NotifItem = ({ icon: Icon, color, title, time, badge }) => (
 const KPICard = ({ icon: Icon, title, value, change, positive, color, sparkData, gradient }) => (
   <motion.div
     whileHover={{ y: -4, boxShadow: '0 20px 48px rgba(108,99,255,0.12)' }}
+    className="glass-card"
     style={{
-      background: 'white', borderRadius: '20px', padding: '1.5rem',
-      border: '1px solid #e2e8f0', boxShadow: '0 2px 12px rgba(0,0,0,0.04)',
+      padding: '1.5rem',
       position: 'relative', overflow: 'hidden', cursor: 'default'
     }}
   >
     {/* Gradient accent top */}
     <div style={{
-      position: 'absolute', top: 0, left: 0, right: 0, height: '3px',
+      position: 'absolute', top: 0, left: 0, right: 0, height: '4px',
       background: gradient || `linear-gradient(90deg, ${color}, ${color}88)`
     }} />
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
@@ -947,7 +947,7 @@ const FacultyDashboard = ({ user, students = [], onNavigateToAttendance, searchQ
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                style={{ background: 'white', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.5rem', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
+                className="glass-card" style={{ padding: '1.5rem' }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
                   <div>
@@ -995,7 +995,7 @@ const FacultyDashboard = ({ user, students = [], onNavigateToAttendance, searchQ
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 }}
-                style={{ background: 'white', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.5rem', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
+                className="glass-card" style={{ padding: '1.5rem' }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                   <div>
@@ -1026,7 +1026,7 @@ const FacultyDashboard = ({ user, students = [], onNavigateToAttendance, searchQ
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  style={{ background: 'white', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.5rem', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
+                  className="glass-card" style={{ padding: '1.5rem' }}
                 >
                   <h3 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#0f172a', margin: '0 0 1.25rem' }}>Student Presence</h3>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
@@ -1054,7 +1054,7 @@ const FacultyDashboard = ({ user, students = [], onNavigateToAttendance, searchQ
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.25 }}
-                  style={{ background: 'white', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.5rem', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
+                  className="glass-card" style={{ padding: '1.5rem' }}
                 >
                   <h3 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#0f172a', margin: '0 0 1.25rem' }}>Dept. Comparison</h3>
                   <DeptBarChart />
@@ -1066,7 +1066,7 @@ const FacultyDashboard = ({ user, students = [], onNavigateToAttendance, searchQ
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                style={{ background: 'white', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.5rem', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
+                className="glass-card" style={{ padding: '1.5rem' }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
                   <div>
@@ -1096,7 +1096,7 @@ const FacultyDashboard = ({ user, students = [], onNavigateToAttendance, searchQ
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.35 }}
-                style={{ background: 'white', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.5rem', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
+                className="glass-card" style={{ padding: '1.5rem' }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
                   <h3 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#0f172a', margin: 0 }}>Recent Activity Feed</h3>
@@ -1112,7 +1112,7 @@ const FacultyDashboard = ({ user, students = [], onNavigateToAttendance, searchQ
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                style={{ background: 'white', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.5rem', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
+                className="glass-card" style={{ padding: '1.5rem' }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.875rem' }}>
@@ -1217,7 +1217,7 @@ const FacultyDashboard = ({ user, students = [], onNavigateToAttendance, searchQ
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.45 }}
-                style={{ background: 'white', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.5rem', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
+                className="glass-card" style={{ padding: '1.5rem' }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
                   <h3 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#0f172a', margin: 0 }}>Advanced Analytics</h3>
@@ -1281,7 +1281,7 @@ const FacultyDashboard = ({ user, students = [], onNavigateToAttendance, searchQ
                 initial={{ opacity: 0, x: 16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 }}
-                style={{ background: 'white', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.25rem', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
+                className="glass-card" style={{ padding: '1.25rem' }}
               >
                 <h3 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#0f172a', margin: '0 0 1rem' }}>Quick Actions</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -1299,7 +1299,7 @@ const FacultyDashboard = ({ user, students = [], onNavigateToAttendance, searchQ
                 initial={{ opacity: 0, x: 16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.15 }}
-                style={{ background: 'white', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.25rem', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
+                className="glass-card" style={{ padding: '1.25rem' }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.875rem' }}>
                   <h3 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#0f172a', margin: 0 }}>Notifications</h3>
@@ -1352,7 +1352,7 @@ const FacultyDashboard = ({ user, students = [], onNavigateToAttendance, searchQ
                 initial={{ opacity: 0, x: 16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.25 }}
-                style={{ background: 'white', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.25rem', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
+                className="glass-card" style={{ padding: '1.25rem' }}
               >
                 <h3 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#0f172a', margin: '0 0 1rem' }}>Upcoming Classes</h3>
                 {upcomingClasses.map((c, i) => (
@@ -1375,7 +1375,7 @@ const FacultyDashboard = ({ user, students = [], onNavigateToAttendance, searchQ
                 initial={{ opacity: 0, x: 16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
-                style={{ background: 'white', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.25rem', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
+                className="glass-card" style={{ padding: '1.25rem' }}
               >
                 <h3 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#0f172a', margin: '0 0 1rem' }}>Curriculum Hub</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -1430,7 +1430,7 @@ const FacultyDashboard = ({ user, students = [], onNavigateToAttendance, searchQ
                 initial={{ opacity: 0, x: 16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
-                style={{ background: 'white', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.25rem', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
+                className="glass-card" style={{ padding: '1.25rem' }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                   <h3 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#0f172a', margin: 0 }}>Faculty Availability</h3>
@@ -1458,7 +1458,7 @@ const FacultyDashboard = ({ user, students = [], onNavigateToAttendance, searchQ
                 initial={{ opacity: 0, x: 16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.45 }}
-                style={{ background: 'white', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.25rem', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
+                className="glass-card" style={{ padding: '1.25rem' }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                   <h3 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#0f172a', margin: 0 }}>Pending Approvals</h3>
