@@ -266,6 +266,26 @@ function App() {
         return null;
     }
 
+    // Faculty dashboard is self-contained with its own sidebar + header
+    if (isAuthenticated && activeTab === 'faculty-dashboard') {
+        return (
+            <div className={settings.darkMode ? 'dark' : ''}>
+                <FacultyDashboard
+                    user={currentUser}
+                    onNavigateToAttendance={(tab) => {
+                        if (tab === 'logout') { logout(); return; }
+                        handleNavigate(tab);
+                    }}
+                    students={students}
+                    searchQuery={searchQuery}
+                    settings={settings}
+                    setSettings={setSettings}
+                    onDeleteAccount={handleDeleteAccount}
+                />
+            </div>
+        );
+    }
+
     return (
         <div className={settings.darkMode ? 'dark' : ''}>
             <Layout

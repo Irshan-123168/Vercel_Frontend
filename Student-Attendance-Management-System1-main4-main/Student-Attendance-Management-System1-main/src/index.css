@@ -1,10 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@400;600;700;800;900&display=swap');
+
 :root {
-    --primary-gradient: linear-gradient(-45deg, #4f46e5, #7c3aed, #ec4899, #06b6d4);
+    --primary-gradient: linear-gradient(135deg, #6C63FF, #FF4DA6, #00C2FF);
     --mesh-size: 400% 400%;
-    --primary-color: #4f46e5;
-    --primary-dark: #4338ca;
-    --primary-light: #eef2ff;
-    --secondary-color: #7c3aed;
+    --primary-color: #6C63FF;
+    --primary-dark: #5a52e8;
+    --primary-light: #ede9ff;
+    --secondary-color: #FF4DA6;
+    --accent-color: #00C2FF;
     --success-color: #059669;
     --error-color: #dc2626;
     --warning-color: #d97706;
@@ -53,10 +56,11 @@ html, body, #root {
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: var(--bg-secondary);
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Animations */
@@ -186,9 +190,10 @@ body {
 }
 
 .nav-item.active {
-    background: var(--primary-gradient);
-    color: white;
-    box-shadow: 0 4px 6px -1px rgba(102, 126, 234, 0.2);
+    background: linear-gradient(135deg, rgba(108,99,255,0.12), rgba(255,77,166,0.08));
+    color: var(--primary-color);
+    border-left: 3px solid var(--primary-color);
+    box-shadow: 0 2px 8px rgba(108,99,255,0.12);
 }
 
 .nav-item.danger:hover {
@@ -257,9 +262,10 @@ body {
 }
 
 .btn-primary {
-    background: var(--primary-gradient);
+    background: linear-gradient(135deg, #6C63FF, #FF4DA6);
     color: white;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 4px 14px rgba(108,99,255,0.3);
+    border: none;
 }
 
 .btn-primary:hover {
