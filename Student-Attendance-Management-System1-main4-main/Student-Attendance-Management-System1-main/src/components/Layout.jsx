@@ -38,6 +38,7 @@ const Layout = ({ children, activeTab, setActiveTab, logout, user, onDeleteAccou
         ADMIN: [
             { id: 'admin-dashboard', label: 'Admin Hub', icon: <ShieldCheck size={20} /> },
             { id: 'students', label: 'Student Directory', icon: <Users size={20} /> },
+            { id: 'leave', label: 'Leave Requests', icon: <ClipboardList size={20} /> },
             { id: 'reports', label: 'System Reports', icon: <FileBarChart size={20} /> },
             { id: 'curriculum', label: 'Curriculum Hub', icon: <Book size={20} /> },
             { id: 'settings', label: 'Settings', icon: <Settings size={20} /> },
