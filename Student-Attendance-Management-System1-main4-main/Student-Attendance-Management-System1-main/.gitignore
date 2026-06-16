@@ -1,1 +1,44 @@
-node_modules
+# Dependency directories
+node_modules/
+jspm_packages/
+web_modules/
+
+# Production builds
+dist/
+build/
+backend/target/
+
+# Logs
+*.log
+backend/*.log
+backend/boot*.log
+backend/build_log.txt
+backend/server_start.log
+backend/debug_boot.log
+frontend.log
+frontend_start.log
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.history/
+.project
+.classpath
+.settings/
+*.class
+
+# Local environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS Metadata
+.DS_Store
+Thumbs.db
