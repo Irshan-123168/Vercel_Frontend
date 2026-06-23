@@ -30,7 +30,7 @@ export const api = {
         } catch (error) {
             console.error('Login error:', error);
             if (isNetworkError(error)) {
-                throw new Error('Backend server is unreachable. Please ensure the Spring Boot application is running on port 9090.');
+                throw new Error(`Backend server is unreachable at ${API_BASE_URL}. Please ensure the Spring Boot application is running (default port 9040).`);
             }
             throw error;
         }
@@ -51,7 +51,7 @@ export const api = {
         } catch (error) {
             console.error('Forgot password error:', error);
             if (isNetworkError(error)) {
-                throw new Error('Backend server is unreachable. Please ensure the Spring Boot application is running on port 9090.');
+                throw new Error(`Backend server is unreachable at ${API_BASE_URL}. Please ensure the Spring Boot application is running (default port 9040).`);
             }
             throw error;
         }
@@ -72,7 +72,7 @@ export const api = {
         } catch (error) {
             console.error('Forgot username error:', error);
             if (isNetworkError(error)) {
-                throw new Error('Backend server is unreachable. Please ensure the Spring Boot application is running on port 9090.');
+                throw new Error(`Backend server is unreachable at ${API_BASE_URL}. Please ensure the Spring Boot application is running (default port 9040).`);
             }
             throw error;
         }
@@ -93,7 +93,7 @@ export const api = {
         } catch (error) {
             console.error('Registration error:', error);
             if (isNetworkError(error)) {
-                throw new Error('Backend server is unreachable. Please ensure the Spring Boot application is running on port 9090.');
+                throw new Error(`Backend server is unreachable at ${API_BASE_URL}. Please ensure the Spring Boot application is running (default port 9040).`);
             }
             throw error;
         }
@@ -134,7 +134,7 @@ export const api = {
         } catch (error) {
             console.error('Update password error:', error);
             if (isNetworkError(error)) {
-                throw new Error('Backend server is unreachable. Please ensure the Spring Boot application is running on port 9090.');
+                throw new Error(`Backend server is unreachable at ${API_BASE_URL}. Please ensure the Spring Boot application is running (default port 9040).`);
             }
             throw error;
         }
