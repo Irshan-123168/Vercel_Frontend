@@ -1,5 +1,5 @@
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "vercelbackend-production-ed24.up.railway.app";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "vercelbackend-production-d62d.up.railway.app";
 
 // Helper to detect any network/connection error regardless of browser wording
 function isNetworkError(error) {
