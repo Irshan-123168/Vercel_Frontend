@@ -43,6 +43,7 @@ const Navbar = ({ onLogin }) => {
 
 const navItems = [
   { name: "Home", href: "#home" },
+  { name: "Quick Links", href: "#quick-links" },
   { name: "About", href: "#about" },
   { name: "Courses", href: "#courses" },
   {
@@ -558,9 +559,10 @@ const HomePage = ({
                   borderRadius: "18px",
                   fontWeight: "700",
                   cursor: "pointer",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
                 }}
               >
-                Dashboard
+                Go to Dashboard
               </button>
             ) : (
               <>
@@ -574,6 +576,7 @@ const HomePage = ({
                     borderRadius: "18px",
                     fontWeight: "700",
                     cursor: "pointer",
+                    boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
                   }}
                 >
                   Get Started
@@ -596,8 +599,215 @@ const HomePage = ({
                 </button>
               </>
             )}
+
+            <a
+              href="#quick-links"
+              style={{
+                background: "linear-gradient(135deg, #a855f7 0%, #ec4899 100%)",
+                color: "white",
+                textDecoration: "none",
+                padding: "18px 34px",
+                borderRadius: "18px",
+                fontWeight: "700",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                boxShadow: "0 10px 30px rgba(168,85,247,0.4)",
+                cursor: "pointer",
+              }}
+            >
+              ⚡ Quick Links
+            </a>
           </div>
         </motion.div>
+      </section>
+
+      {/* QUICK LINKS INTERACTIVE BAR SECTION */}
+      <section
+        id="quick-links"
+        style={{
+          background: "#0f172a",
+          padding: "50px 20px",
+          borderBottom: "1px solid rgba(255,255,255,0.08)",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            textAlign: "center",
+          }}
+        >
+          <p
+            style={{
+              fontSize: "0.75rem",
+              fontWeight: "700",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "#ec4899",
+              marginBottom: "0.8rem",
+            }}
+          >
+            Fast Access Protocols
+          </p>
+
+          <h2
+            style={{
+              fontSize: "2.2rem",
+              fontWeight: "900",
+              color: "white",
+              marginBottom: "2.5rem",
+            }}
+          >
+            Quick Links &amp; Institutional Portals
+          </h2>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+              gap: "1.5rem",
+            }}
+          >
+            {[
+              {
+                title: "Official SGP Portal",
+                desc: "Visit the main Sanjay Gandhi Polytechnic institutional site",
+                action: "Visit Website",
+                href: "https://www.sgp.edu.in/",
+                external: true,
+                gradient: "linear-gradient(135deg, #3b82f6, #1d4ed8)",
+                icon: "🌐",
+              },
+              {
+                title: "Placement Training",
+                desc: "Explore training schedules, recruitment & placement stats",
+                action: "View Placements",
+                href: "https://www.sgp.edu.in/index.php/placements/placement-training.html",
+                external: true,
+                gradient: "linear-gradient(135deg, #a855f7, #7e22ce)",
+                icon: "🎓",
+              },
+              {
+                title: "Student Sign In",
+                desc: "Access your personalized attendance dashboard and records",
+                action: "Sign In Now",
+                onClick: onLogin,
+                gradient: "linear-gradient(135deg, #ec4899, #be185d)",
+                icon: "🔐",
+              },
+              {
+                title: "Portal Onboarding",
+                desc: "Register your institutional node identity for student/staff",
+                action: "Get Started",
+                onClick: onRegister,
+                gradient: "linear-gradient(135deg, #10b981, #047857)",
+                icon: "🚀",
+              },
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ y: -8, scale: 1.02 }}
+                style={{
+                  background: "rgba(255,255,255,0.05)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  borderRadius: "24px",
+                  padding: "1.8rem 1.5rem",
+                  textAlign: "left",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  backdropFilter: "blur(12px)",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      borderRadius: "16px",
+                      background: item.gradient,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "1.5rem",
+                      marginBottom: "1.2rem",
+                      boxShadow: "0 8px 20px rgba(0,0,0,0.2)",
+                    }}
+                  >
+                    {item.icon}
+                  </div>
+                  <h3
+                    style={{
+                      color: "white",
+                      fontSize: "1.2rem",
+                      fontWeight: "800",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
+                    {item.title}
+                  </h3>
+                  <p
+                    style={{
+                      color: "rgba(255,255,255,0.65)",
+                      fontSize: "0.88rem",
+                      lineHeight: "1.6",
+                      marginBottom: "1.5rem",
+                    }}
+                  >
+                    {item.desc}
+                  </p>
+                </div>
+
+                {item.external ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                      color: "white",
+                      fontWeight: "700",
+                      fontSize: "0.9rem",
+                      textDecoration: "none",
+                      background: "rgba(255,255,255,0.1)",
+                      padding: "0.75rem 1.25rem",
+                      borderRadius: "14px",
+                      border: "1px solid rgba(255,255,255,0.15)",
+                      transition: "background 0.2s",
+                      width: "fit-content",
+                    }}
+                  >
+                    {item.action} ↗
+                  </a>
+                ) : (
+                  <button
+                    onClick={item.onClick}
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                      color: "white",
+                      fontWeight: "700",
+                      fontSize: "0.9rem",
+                      background: item.gradient,
+                      padding: "0.75rem 1.25rem",
+                      borderRadius: "14px",
+                      border: "none",
+                      cursor: "pointer",
+                      boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
+                      width: "fit-content",
+                    }}
+                  >
+                    {item.action} →
+                  </button>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ACCREDITATION BADGES SECTION */}
