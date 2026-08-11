@@ -45,6 +45,7 @@ const navItems = [
   { name: "Home", href: "#home" },
   { name: "Quick Links", href: "#quick-links" },
   { name: "About", href: "#about" },
+  { name: "Photo Gallery", href: "#gallery" },
   { name: "Courses", href: "#courses" },
   {
     name: "Placements",
@@ -264,6 +265,8 @@ const HomePage = ({
   onDashboard,
   isAuthenticated,
 }) => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [activeFilter, setActiveFilter] = useState("All");
   return (
     <div>
       <Navbar onLogin={onLogin} />
