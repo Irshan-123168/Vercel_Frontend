@@ -1141,11 +1141,13 @@ const HomePage = ({
         </div>
       </section>
 
-      {/* CAMPUS SECTION */}
+      {/* CAMPUS HIGHLIGHTS & GALLERY SECTION */}
       <section
         style={{
           padding: "80px 20px",
           background: "#f8fafc",
+          borderTop: "1px solid #e2e8f0",
+          borderBottom: "1px solid #e2e8f0",
         }}
       >
         <div
@@ -1154,48 +1156,143 @@ const HomePage = ({
             margin: "0 auto",
           }}
         >
-          <h2
-            style={{
-              textAlign: "center",
-              fontSize: "3rem",
-              fontWeight: "800",
-              marginBottom: "3rem",
-            }}
-          >
-            Campus Highlights
-          </h2>
+          <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+            <p
+              style={{
+                fontSize: "0.75rem",
+                fontWeight: "700",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: "#7e22ce",
+                marginBottom: "0.8rem",
+              }}
+            >
+              Campus Life &amp; Infrastructure
+            </p>
+            <h2
+              style={{
+                fontSize: "clamp(2.2rem, 4vw, 3.2rem)",
+                fontWeight: "900",
+                color: "#0f172a",
+                margin: 0,
+              }}
+            >
+              Campus Highlights
+            </h2>
+            <p
+              style={{
+                color: "#64748b",
+                fontSize: "1.05rem",
+                maxWidth: "600px",
+                margin: "1rem auto 0",
+              }}
+            >
+              Experience world-class learning environments, state-of-the-art computer labs, and vibrant academic sessions at Sanjay Gandhi Polytechnic.
+            </p>
+          </div>
 
           <div
             style={{
               display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit,minmax(300px,1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
               gap: "2rem",
             }}
           >
-            {[facultyGroupImg, courtyardImg, frontImg].map(
-              (img, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ y: -10 }}
-                  style={{
-                    borderRadius: "24px",
-                    overflow: "hidden",
-                    boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
-                  }}
-                >
+            {[
+              {
+                img: classroomImg,
+                title: "Interactive Classroom Sessions",
+                category: "Academic Learning",
+                desc: "Modern technology-enabled classrooms fostering engaging discussions",
+              },
+              {
+                img: labImg,
+                title: "Computer & Technology Labs",
+                category: "Practical Training",
+                desc: "High-speed workstations equipped with modern industry software",
+              },
+              {
+                img: facultyMeetingImg,
+                title: "Faculty & Academic Leadership",
+                category: "Institutional Governance",
+                desc: "Dedicated educators planning curriculum and student progress",
+              },
+              {
+                img: courtyardImg,
+                title: "Campus Courtyard & Greenery",
+                category: "Environment",
+                desc: "Lush green courtyard providing a serene atmosphere for students",
+              },
+              {
+                img: frontImg,
+                title: "Main Academic Building",
+                category: "Infrastructure",
+                desc: "Iconic institutional facade standing strong for over 28 years",
+              },
+              {
+                img: facultyGroupImg,
+                title: "Staff & Institutional Team",
+                category: "Excellence",
+                desc: "Accomplished staff committed to student success and accreditation",
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+                style={{
+                  borderRadius: "24px",
+                  overflow: "hidden",
+                  background: "white",
+                  boxShadow: "0 12px 35px rgba(0,0,0,0.08)",
+                  border: "1px solid #f1f5f9",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <div style={{ position: "relative", overflow: "hidden", height: "240px" }}>
                   <img
-                    src={img}
-                    alt="Campus"
+                    src={item.img}
+                    alt={item.title}
                     style={{
                       width: "100%",
-                      height: "300px",
+                      height: "100%",
                       objectFit: "cover",
+                      display: "block",
+                      transition: "transform 0.5s ease",
                     }}
                   />
-                </motion.div>
-              )
-            )}
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "1rem",
+                      left: "1rem",
+                      background: "rgba(15, 23, 42, 0.75)",
+                      backdropFilter: "blur(8px)",
+                      color: "#e2e8f0",
+                      fontSize: "0.72rem",
+                      fontWeight: "700",
+                      padding: "0.4rem 0.9rem",
+                      borderRadius: "50px",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.08em",
+                    }}
+                  >
+                    {item.category}
+                  </div>
+                </div>
+                <div style={{ padding: "1.5rem", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                  <div>
+                    <h3 style={{ fontSize: "1.2rem", fontWeight: "800", color: "#0f172a", marginBottom: "0.4rem" }}>
+                      {item.title}
+                    </h3>
+                    <p style={{ color: "#64748b", fontSize: "0.88rem", lineHeight: "1.6", margin: 0 }}>
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
