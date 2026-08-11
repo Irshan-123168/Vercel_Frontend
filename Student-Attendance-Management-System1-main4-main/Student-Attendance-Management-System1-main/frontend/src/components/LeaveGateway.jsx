@@ -23,11 +23,17 @@ const LeaveGateway = ({ user }) => {
         type: 'Educational Sync',
         duration: 1,
         startDate: new Date().toISOString().split('T')[0],
+        dueDate: new Date().toISOString().split('T')[0],
         reason: ''
     });
 
-    // Auto-computed due date from form state
-    const formDueDate = addDays(formData.startDate, formData.duration);
+    // Auto-update dueDate when startDate or duration changes
+    useEffect(() => {
+        const computed = addDays(formData.startDate, formData.duration);
+        if (computed) {
+            setFormData(prev => ({ ...prev, dueDate: computed }));
+        }
+    }, [formData.startDate, formData.duration]);
 
     useEffect(() => {
         loadRequests();
@@ -62,13 +68,13 @@ const LeaveGateway = ({ user }) => {
                 reason: formData.reason,
                 startDate: formData.startDate,
                 duration: parseInt(formData.duration),
-                dueDate: formDueDate,
+                dueDate: formData.dueDate,
                 appliedDate: today
             };
             await api.createLeaveRequest(newRequest);
             setSuccessMessage(true);
             setIsApplying(false);
-            setFormData({ type: 'Educational Sync', duration: 1, reason: '', startDate: today });
+            setFormData({ type: 'Educational Sync', duration: 1, reason: '', startDate: today, dueDate: today });
             loadRequests();
             setTimeout(() => setSuccessMessage(false), 3000);
         } catch (error) {
@@ -293,29 +299,21 @@ const LeaveGateway = ({ user }) => {
                                     </div>
                                 </div>
 
-                                {/* Due Date — auto-calculated, read-only */}
+                                {/* Due Date — auto-filled from Start Date + Duration, editable via calendar */}
                                 <div className="form-group">
                                     <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                                         <CalendarClock size={14} />
                                         Due Date
-                                        <span style={{ fontSize: '0.72rem', fontWeight: 400, color: 'var(--text-light)' }}>(auto-calculated)</span>
+                                        <span style={{ fontSize: '0.72rem', fontWeight: 400, color: 'var(--text-light)' }}>(auto-filled, editable)</span>
                                     </label>
-                                    <div
+                                    <input
+                                        type="date"
                                         className="form-input"
-                                        style={{
-                                            background: 'var(--bg-tertiary)',
-                                            border: '1.5px dashed var(--border-color)',
-                                            cursor: 'default',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '0.5rem',
-                                            fontWeight: 700,
-                                            color: formDueDate ? 'var(--text-primary)' : 'var(--text-light)'
-                                        }}
-                                    >
-                                        <CalendarClock size={16} style={{ color: 'var(--primary-color)', flexShrink: 0 }} />
-                                        {formDueDate || '—'}
-                                    </div>
+                                        value={formData.dueDate}
+                                        min={formData.startDate}
+                                        onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
+                                        required
+                                    />
                                 </div>
                                 <div className="form-group">
                                     <label className="form-label">Justification Memo</label>
