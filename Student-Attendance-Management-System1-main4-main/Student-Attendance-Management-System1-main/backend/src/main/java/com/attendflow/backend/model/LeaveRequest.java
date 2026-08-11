@@ -22,5 +22,6 @@ public class LeaveRequest {
     private String status; // Pending, Approved, Rejected
     private String startDate;
     private Integer duration;
+    private String dueDate;      // Last day of leave (startDate + duration days)
     private String appliedDate;
 }

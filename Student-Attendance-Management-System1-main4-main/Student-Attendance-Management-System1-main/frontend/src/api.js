@@ -1,5 +1,5 @@
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "vercelbackend-production-d62d.up.railway.app";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:9042/api";
 
 // Helper to detect any network/connection error regardless of browser wording
 function isNetworkError(error) {
@@ -31,7 +31,7 @@ export const api = {
         } catch (error) {
             console.error('Login error:', error);
             if (isNetworkError(error)) {
-                throw new Error(`Backend server is unreachable at ${API_BASE_URL}. Please ensure the Spring Boot application is running (default port 9040).`);
+                throw new Error(`Backend server is unreachable at ${API_BASE_URL}. Please ensure the Spring Boot application is running on port 9042.`);
             }
             throw error;
         }
@@ -52,7 +52,7 @@ export const api = {
         } catch (error) {
             console.error('Forgot password error:', error);
             if (isNetworkError(error)) {
-                throw new Error(`Backend server is unreachable at ${API_BASE_URL}. Please ensure the Spring Boot application is running (default port 9040).`);
+                throw new Error(`Backend server is unreachable at ${API_BASE_URL}. Please ensure the Spring Boot application is running on port 9042.`);
             }
             throw error;
         }
@@ -73,7 +73,7 @@ export const api = {
         } catch (error) {
             console.error('Forgot username error:', error);
             if (isNetworkError(error)) {
-                throw new Error(`Backend server is unreachable at ${API_BASE_URL}. Please ensure the Spring Boot application is running (default port 9040).`);
+                throw new Error(`Backend server is unreachable at ${API_BASE_URL}. Please ensure the Spring Boot application is running on port 9042.`);
             }
             throw error;
         }
@@ -94,7 +94,7 @@ export const api = {
         } catch (error) {
             console.error('Registration error:', error);
             if (isNetworkError(error)) {
-                throw new Error(`Backend server is unreachable at ${API_BASE_URL}. Please ensure the Spring Boot application is running (default port 9040).`);
+                throw new Error(`Backend server is unreachable at ${API_BASE_URL}. Please ensure the Spring Boot application is running on port 9042.`);
             }
             throw error;
         }
