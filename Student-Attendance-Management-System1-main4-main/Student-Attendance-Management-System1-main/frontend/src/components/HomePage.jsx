@@ -41,19 +41,20 @@ const Navbar = ({ onLogin }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-const navItems = [
-  { name: "Home", href: "#home" },
-  { name: "Quick Links", href: "#quick-links" },
-  { name: "About", href: "#about" },
-  { name: "Photo Gallery", href: "#gallery" },
-  { name: "Courses", href: "#courses" },
-  {
-    name: "Placements",
-    href: "https://www.sgp.edu.in/index.php/placements/placement-training.html",
-    external: true,
-  },
-  { name: "Contact", href: "#contact" },
-];
+  const navItems = [
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Courses", href: "#courses" },
+    { name: "Photo Gallery", href: "#gallery" },
+    { name: "Quick Links", href: "#quick-links" },
+    {
+      name: "Placements",
+      href: "https://www.sgp.edu.in/index.php/placements/placement-training.html",
+      external: true,
+    },
+    { name: "Contact", href: "#contact" },
+  ];
+
   return (
     <>
       <header
@@ -64,78 +65,135 @@ const navItems = [
           right: 0,
           zIndex: 1000,
           background: isScrolled
-            ? "rgba(255,255,255,0.95)"
-            : "transparent",
-          backdropFilter: isScrolled ? "blur(12px)" : "none",
-          transition: "0.4s",
+            ? "rgba(255, 255, 255, 0.95)"
+            : "rgba(15, 23, 42, 0.25)",
+          backdropFilter: "blur(16px)",
+          boxShadow: isScrolled
+            ? "0 4px 20px rgba(0, 0, 0, 0.08)"
+            : "none",
+          borderBottom: isScrolled
+            ? "1px solid #e2e8f0"
+            : "1px solid rgba(255, 255, 255, 0.1)",
+          transition: "all 0.4s ease",
         }}
       >
         <div
           style={{
-            maxWidth: "1200px",
+            maxWidth: "1250px",
             margin: "0 auto",
-            padding: "1rem 2rem",
+            padding: "0.8rem 2rem",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
           }}
         >
           {/* Logo Section */}
-<div
-  style={{
-    display: "flex",
-    alignItems: "center",
-    gap: "14px",
-  }}
->
-  {/* College Logo Banner */}
-  <img
-    src={logoImg}
-    alt="Sanjay Gandhi Polytechnic"
-    style={{
-      height: "55px",
-      width: "auto",
-      objectFit: "contain",
-    }}
-  />
+          <a
+            href="#home"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              textDecoration: "none",
+            }}
+          >
+            {/* College Logo Banner */}
+            <img
+              src={logoImg}
+              alt="Sanjay Gandhi Polytechnic"
+              style={{
+                height: "52px",
+                width: "auto",
+                objectFit: "contain",
+                filter: isScrolled ? "none" : "drop-shadow(0 2px 8px rgba(0,0,0,0.3))",
+              }}
+            />
 
-  {/* College Name */}
-  <h2
-    style={{
-      color: isScrolled ? "#1e3a8a" : "#ffffff",
-      fontWeight: "900",
-      fontSize: "1.8rem",
-      margin: 0,
-      letterSpacing: "0.5px",
-    }}
-  >
-    SGP BALLARI
-        </h2>
-        </div>
+            {/* College Name */}
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <span
+                style={{
+                  color: isScrolled ? "#7e22ce" : "#f472b6",
+                  fontWeight: "800",
+                  fontSize: "1.35rem",
+                  letterSpacing: "0.5px",
+                  lineHeight: "1.1",
+                }}
+              >
+                SGP BALLARI
+              </span>
+              <span
+                style={{
+                  color: isScrolled ? "#64748b" : "rgba(255,255,255,0.75)",
+                  fontSize: "0.68rem",
+                  fontWeight: "600",
+                  letterSpacing: "0.05em",
+                  textTransform: "uppercase",
+                }}
+              >
+                Sanjay Gandhi Polytechnic
+              </span>
+            </div>
+          </a>
+
           {/* Desktop Nav */}
           <nav
             className="desktop-nav"
             style={{
               display: "flex",
-              gap: "2rem",
+              alignItems: "center",
+              gap: "1.8rem",
             }}
           >
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
+                target={item.external ? "_blank" : "_self"}
+                rel={item.external ? "noopener noreferrer" : undefined}
+                onClick={(e) => {
+                  if (item.href.startsWith("#")) {
+                    e.preventDefault();
+                    const targetId = item.href.substring(1);
+                    const el = document.getElementById(targetId);
+                    if (el) {
+                      const headerOffset = 80;
+                      const elementPosition = el.getBoundingClientRect().top;
+                      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                    }
+                  }
+                }}
                 style={{
-                  color: isScrolled ? "#111" : "white",
+                  color: isScrolled ? "#1e293b" : "white",
                   textDecoration: "none",
                   fontWeight: "600",
+                  fontSize: "0.92rem",
+                  padding: "0.4rem 0.8rem",
+                  borderRadius: "10px",
+                  transition: "all 0.2s ease",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "4px",
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.color = isScrolled ? "#7e22ce" : "#f472b6";
+                  e.target.style.background = isScrolled
+                    ? "rgba(126, 34, 206, 0.06)"
+                    : "rgba(255, 255, 255, 0.1)";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.color = isScrolled ? "#1e293b" : "white";
+                  e.target.style.background = "transparent";
                 }}
               >
                 {item.name}
+                {item.external && <span style={{ fontSize: "0.75rem" }}>↗</span>}
               </a>
             ))}
           </nav>
 
-          {/* Right Side */}
+          {/* Right Side / Login Action */}
           <div
             style={{
               display: "flex",
@@ -146,15 +204,24 @@ const navItems = [
             <button
               onClick={onLogin}
               style={{
-                background: isScrolled
-                  ? "#7e22ce"
-                  : "rgba(255,255,255,0.15)",
+                background: "linear-gradient(135deg, #7e22ce 0%, #a855f7 100%)",
                 color: "white",
                 border: "none",
-                padding: "12px 24px",
+                padding: "10px 22px",
                 borderRadius: "50px",
                 fontWeight: "700",
+                fontSize: "0.9rem",
                 cursor: "pointer",
+                boxShadow: "0 4px 15px rgba(126, 34, 206, 0.35)",
+                transition: "transform 0.2s ease, box-shadow 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.transform = "translateY(-2px)";
+                e.target.style.boxShadow = "0 6px 20px rgba(126, 34, 206, 0.45)";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = "translateY(0)";
+                e.target.style.boxShadow = "0 4px 15px rgba(126, 34, 206, 0.35)";
               }}
             >
               Login
@@ -165,36 +232,59 @@ const navItems = [
               style={{
                 background: "transparent",
                 border: "none",
-                color: isScrolled ? "#111" : "white",
+                color: isScrolled ? "#0f172a" : "white",
                 display: "none",
+                cursor: "pointer",
+                padding: "0.4rem",
               }}
               className="mobile-menu"
             >
-              {isMobileOpen ? <X /> : <Menu />}
+              {isMobileOpen ? <X size={26} /> : <Menu size={26} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu Dropdown */}
         {isMobileOpen && (
           <div
             style={{
-              background: "white",
-              padding: "1rem 2rem",
+              background: "#ffffff",
+              padding: "1rem 2rem 1.5rem",
+              borderTop: "1px solid #f1f5f9",
+              boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
             }}
           >
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
+                target={item.external ? "_blank" : "_self"}
+                rel={item.external ? "noopener noreferrer" : undefined}
+                onClick={(e) => {
+                  setIsMobileOpen(false);
+                  if (item.href.startsWith("#")) {
+                    e.preventDefault();
+                    const targetId = item.href.substring(1);
+                    const el = document.getElementById(targetId);
+                    if (el) {
+                      const headerOffset = 80;
+                      const elementPosition = el.getBoundingClientRect().top;
+                      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                    }
+                  }
+                }}
                 style={{
                   display: "block",
-                  padding: "1rem 0",
-                  color: "#111",
+                  padding: "0.8rem 0",
+                  color: "#0f172a",
                   textDecoration: "none",
+                  fontWeight: "600",
+                  fontSize: "1rem",
+                  borderBottom: "1px solid #f1f5f9",
                 }}
               >
-                {item.name}
+                {item.name} {item.external && "↗"}
               </a>
             ))}
           </div>
@@ -398,6 +488,11 @@ const HomePage = ({
         >
           <style>
 {`
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
 @keyframes gradientMove {
   0% {
     background-position: 0% 50%;
@@ -598,13 +693,23 @@ const HomePage = ({
                     cursor: "pointer",
                   }}
                 >
-                  Sign In
+                  Login
                 </button>
               </>
             )}
 
             <a
               href="#quick-links"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById("quick-links");
+                if (el) {
+                  const headerOffset = 80;
+                  const elementPosition = el.getBoundingClientRect().top;
+                  const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                  window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                }
+              }}
               style={{
                 background: "linear-gradient(135deg, #a855f7 0%, #ec4899 100%)",
                 color: "white",
@@ -692,9 +797,9 @@ const HomePage = ({
                 icon: "🎓",
               },
               {
-                title: "Student Sign In",
+                title: "Portal Login",
                 desc: "Access your personalized attendance dashboard and records",
-                action: "Sign In Now",
+                action: "Login Now",
                 onClick: onLogin,
                 gradient: "linear-gradient(135deg, #ec4899, #be185d)",
                 icon: "🔐",
@@ -1144,11 +1249,12 @@ const HomePage = ({
         </div>
       </section>
 
-      {/* CAMPUS HIGHLIGHTS & GALLERY SECTION */}
+      {/* PHOTO GALLERY SECTION */}
       <section
+        id="gallery"
         style={{
-          padding: "80px 20px",
-          background: "#f8fafc",
+          padding: "90px 20px",
+          background: "linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%)",
           borderTop: "1px solid #e2e8f0",
           borderBottom: "1px solid #e2e8f0",
         }}
@@ -1159,7 +1265,7 @@ const HomePage = ({
             margin: "0 auto",
           }}
         >
-          <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+          <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
             <p
               style={{
                 fontSize: "0.75rem",
@@ -1170,7 +1276,7 @@ const HomePage = ({
                 marginBottom: "0.8rem",
               }}
             >
-              Campus Life &amp; Infrastructure
+              Institutional Media Ledger
             </p>
             <h2
               style={{
@@ -1180,18 +1286,58 @@ const HomePage = ({
                 margin: 0,
               }}
             >
-              Campus Highlights
+              Photo Gallery
             </h2>
             <p
               style={{
                 color: "#64748b",
                 fontSize: "1.05rem",
-                maxWidth: "600px",
+                maxWidth: "640px",
                 margin: "1rem auto 0",
               }}
             >
-              Experience world-class learning environments, state-of-the-art computer labs, and vibrant academic sessions at Sanjay Gandhi Polytechnic.
+              Explore our state-of-the-art computer labs, modern interactive classrooms, campus architecture, and academic leadership team.
             </p>
+
+            {/* Category Filter Tabs */}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                gap: "0.75rem",
+                marginTop: "2rem",
+                flexWrap: "wrap",
+              }}
+            >
+              {["All", "Academics & Labs", "Campus & Infrastructure", "Faculty & Team"].map(
+                (filter) => (
+                  <button
+                    key={filter}
+                    onClick={() => setActiveFilter(filter)}
+                    style={{
+                      padding: "0.6rem 1.4rem",
+                      borderRadius: "50px",
+                      fontSize: "0.88rem",
+                      fontWeight: "700",
+                      cursor: "pointer",
+                      border: activeFilter === filter ? "none" : "1px solid #cbd5e1",
+                      background:
+                        activeFilter === filter
+                          ? "linear-gradient(135deg, #7e22ce 0%, #a855f7 100%)"
+                          : "white",
+                      color: activeFilter === filter ? "white" : "#475569",
+                      boxShadow:
+                        activeFilter === filter
+                          ? "0 6px 20px rgba(126,34,206,0.3)"
+                          : "none",
+                      transition: "all 0.3s ease",
+                    }}
+                  >
+                    {filter}
+                  </button>
+                )
+              )}
+            </div>
           </div>
 
           <div
@@ -1205,100 +1351,270 @@ const HomePage = ({
               {
                 img: classroomImg,
                 title: "Interactive Classroom Sessions",
-                category: "Academic Learning",
-                desc: "Modern technology-enabled classrooms fostering engaging discussions",
+                category: "Academics & Labs",
+                badge: "Academic Learning",
+                desc: "Modern technology-enabled classrooms fostering engaging discussions and interactive student learning.",
               },
               {
                 img: labImg,
                 title: "Computer & Technology Labs",
-                category: "Practical Training",
-                desc: "High-speed workstations equipped with modern industry software",
+                category: "Academics & Labs",
+                badge: "Practical Training",
+                desc: "High-speed workstations equipped with modern industry software and digital infrastructure.",
               },
               {
                 img: facultyMeetingImg,
                 title: "Faculty & Academic Leadership",
-                category: "Institutional Governance",
-                desc: "Dedicated educators planning curriculum and student progress",
+                category: "Faculty & Team",
+                badge: "Institutional Governance",
+                desc: "Dedicated educators and department heads planning curriculum, student mentoring, and progress.",
               },
               {
                 img: courtyardImg,
                 title: "Campus Courtyard & Greenery",
-                category: "Environment",
-                desc: "Lush green courtyard providing a serene atmosphere for students",
+                category: "Campus & Infrastructure",
+                badge: "Environment",
+                desc: "Lush green central courtyard providing a serene, eco-friendly environment for students.",
               },
               {
                 img: frontImg,
                 title: "Main Academic Building",
-                category: "Infrastructure",
-                desc: "Iconic institutional facade standing strong for over 28 years",
+                category: "Campus & Infrastructure",
+                badge: "Infrastructure",
+                desc: "Iconic institutional main facade standing strong as a pillar of technical education in Ballari.",
               },
               {
                 img: facultyGroupImg,
                 title: "Staff & Institutional Team",
-                category: "Excellence",
-                desc: "Accomplished staff committed to student success and accreditation",
+                category: "Faculty & Team",
+                badge: "Excellence",
+                desc: "Accomplished academic staff and department members committed to student excellence and NBA accreditation.",
               },
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-                style={{
-                  borderRadius: "24px",
-                  overflow: "hidden",
-                  background: "white",
-                  boxShadow: "0 12px 35px rgba(0,0,0,0.08)",
-                  border: "1px solid #f1f5f9",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <div style={{ position: "relative", overflow: "hidden", height: "240px" }}>
-                  <img
-                    src={item.img}
-                    alt={item.title}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      display: "block",
-                      transition: "transform 0.5s ease",
-                    }}
-                  />
+            ]
+              .filter(
+                (item) =>
+                  activeFilter === "All" || item.category === activeFilter
+              )
+              .map((item, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                  onClick={() => setSelectedImage(item)}
+                  style={{
+                    borderRadius: "24px",
+                    overflow: "hidden",
+                    background: "white",
+                    boxShadow: "0 12px 35px rgba(0,0,0,0.08)",
+                    border: "1px solid #f1f5f9",
+                    display: "flex",
+                    flexDirection: "column",
+                    cursor: "pointer",
+                    position: "relative",
+                  }}
+                >
                   <div
                     style={{
-                      position: "absolute",
-                      top: "1rem",
-                      left: "1rem",
-                      background: "rgba(15, 23, 42, 0.75)",
-                      backdropFilter: "blur(8px)",
-                      color: "#e2e8f0",
-                      fontSize: "0.72rem",
-                      fontWeight: "700",
-                      padding: "0.4rem 0.9rem",
-                      borderRadius: "50px",
-                      textTransform: "uppercase",
-                      letterSpacing: "0.08em",
+                      position: "relative",
+                      overflow: "hidden",
+                      height: "250px",
                     }}
                   >
-                    {item.category}
+                    <img
+                      src={item.img}
+                      alt={item.title}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        display: "block",
+                        transition: "transform 0.5s ease",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "1rem",
+                        left: "1rem",
+                        background: "rgba(15, 23, 42, 0.75)",
+                        backdropFilter: "blur(8px)",
+                        color: "#e2e8f0",
+                        fontSize: "0.72rem",
+                        fontWeight: "700",
+                        padding: "0.4rem 0.9rem",
+                        borderRadius: "50px",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.08em",
+                      }}
+                    >
+                      {item.badge}
+                    </div>
+
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        background: "rgba(126, 34, 206, 0.25)",
+                        opacity: 0,
+                        transition: "opacity 0.3s ease",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "white",
+                        fontWeight: "800",
+                        fontSize: "0.95rem",
+                      }}
+                      className="photo-hover-overlay"
+                    >
+                      🔍 Click to Enlarge
+                    </div>
                   </div>
-                </div>
-                <div style={{ padding: "1.5rem", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                  <div>
-                    <h3 style={{ fontSize: "1.2rem", fontWeight: "800", color: "#0f172a", marginBottom: "0.4rem" }}>
-                      {item.title}
-                    </h3>
-                    <p style={{ color: "#64748b", fontSize: "0.88rem", lineHeight: "1.6", margin: 0 }}>
-                      {item.desc}
-                    </p>
+                  <div
+                    style={{
+                      padding: "1.5rem",
+                      flex: 1,
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <div>
+                      <h3
+                        style={{
+                          fontSize: "1.2rem",
+                          fontWeight: "800",
+                          color: "#0f172a",
+                          marginBottom: "0.4rem",
+                        }}
+                      >
+                        {item.title}
+                      </h3>
+                      <p
+                        style={{
+                          color: "#64748b",
+                          fontSize: "0.88rem",
+                          lineHeight: "1.6",
+                          margin: 0,
+                        }}
+                      >
+                        {item.desc}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
           </div>
         </div>
       </section>
+
+      {/* LIGHTBOX MODAL PREVIEW */}
+      {selectedImage && (
+        <div
+          onClick={() => setSelectedImage(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 9999,
+            background: "rgba(15, 23, 42, 0.92)",
+            backdropFilter: "blur(12px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "2rem",
+          }}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              maxWidth: "900px",
+              width: "100%",
+              background: "#1e293b",
+              borderRadius: "28px",
+              overflow: "hidden",
+              boxShadow: "0 30px 80px rgba(0,0,0,0.5)",
+              border: "1px solid rgba(255,255,255,0.15)",
+              position: "relative",
+            }}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setSelectedImage(null)}
+              style={{
+                position: "absolute",
+                top: "1.2rem",
+                right: "1.2rem",
+                background: "rgba(0,0,0,0.6)",
+                border: "1px solid rgba(255,255,255,0.2)",
+                color: "white",
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
+                fontSize: "1.2rem",
+                fontWeight: "bold",
+                cursor: "pointer",
+                zIndex: 10,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              ✕
+            </button>
+
+            <img
+              src={selectedImage.img}
+              alt={selectedImage.title}
+              style={{
+                width: "100%",
+                maxHeight: "520px",
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
+
+            <div style={{ padding: "2rem", color: "white" }}>
+              <span
+                style={{
+                  background: "linear-gradient(135deg, #7e22ce, #a855f7)",
+                  color: "white",
+                  fontSize: "0.75rem",
+                  fontWeight: "800",
+                  padding: "0.4rem 1rem",
+                  borderRadius: "50px",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.08em",
+                  display: "inline-block",
+                  marginBottom: "0.8rem",
+                }}
+              >
+                {selectedImage.badge}
+              </span>
+              <h3
+                style={{
+                  fontSize: "1.8rem",
+                  fontWeight: "900",
+                  margin: "0 0 0.5rem",
+                }}
+              >
+                {selectedImage.title}
+              </h3>
+              <p
+                style={{
+                  color: "rgba(255,255,255,0.75)",
+                  fontSize: "1rem",
+                  lineHeight: "1.7",
+                  margin: 0,
+                }}
+              >
+                {selectedImage.desc}
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      )}
 
       {/* COURSES */}
       <section
