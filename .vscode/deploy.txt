@@ -1,0 +1,72 @@
+🚀 Complete Deployment Guide: Database, Backend & Frontend
+This guide details how to deploy your Student Attendance Management System to production cloud platforms.
+
+🛠 Project Architecture Summary
+Database: MySQL (Hosted on Railway or Aiven)
+Backend: Java Spring Boot (Hosted on Railway or Render)
+Frontend: React + Vite (Hosted on Vercel)
+Part 1: Deploying the Database (MySQL)
+Option A: Using Railway MySQL (Recommended)
+Log in to Railway.app.
+Click "+ New" → "Database" → Select "MySQL".
+Railway will provision a managed MySQL database and display connection credentials under the "Connect" / "Variables" tab:
+MYSQLHOST
+MYSQLPORT
+MYSQLDATABASE
+MYSQLUSER
+MYSQLPASSWORD
+Note down these connection values or use Railway's internal variable references.
+Option B: Using Aiven MySQL Cloud
+Create a free account on Aiven.io.
+Create a new MySQL service.
+Obtain your Service URI: jdbc:mysql://<HOST>:<PORT>/<DATABASE>?useSSL=true&serverTimezone=UTC
+Obtain the username (avnadmin) and password provided in the console.
+Part 2: Deploying the Backend (Spring Boot)
+Your backend has a production-ready 
+dockerfile
+ in the backend/ directory.
+
+Step 1: Deploy to Railway
+Push your project repository to GitHub.
+In Railway, click "+ New" → "GitHub Repo" → Select your repository.
+Set the Root Directory to /backend.
+Railway will automatically detect the dockerfile and build your Spring Boot JAR.
+Step 2: Configure Backend Environment Variables
+In Railway → Go to your Backend Service → Settings / Variables tab, and add:
+
+Environment Variable	Value Example / Description
+DATABASE_URL	jdbc:mysql://${{MySQL.MYSQLHOST}}:${{MySQL.MYSQLPORT}}/${{MySQL.MYSQLDATABASE}}?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+DATABASE_USERNAME	${{MySQL.MYSQLUSER}} (or your db user)
+DATABASE_PASSWORD	${{MySQL.MYSQLPASSWORD}} (or your db password)
+CORS_ALLOWED_ORIGINS	https://your-frontend-app.vercel.app
+MAIL_USERNAME	shaikirshan78@gmail.com
+MAIL_PASSWORD	your-app-password
+Once set, Railway will assign a public domain URL to your backend (e.g., https://your-backend.up.railway.app).
+Part 3: Deploying the Frontend (React + Vite)
+Step 1: Deploy to Vercel
+Log in to Vercel.com.
+Click "Add New..." → "Project" → Import your GitHub repository.
+Set the configuration as follows:
+Framework Preset: Vite
+Root Directory: frontend
+Build Command: npm run build
+Output Directory: dist
+Step 2: Configure Frontend Environment Variables
+Before clicking Deploy, add the environment variable:
+
+Environment Variable	Value
+VITE_API_BASE_URL	https://your-backend.up.railway.app/api
+(Replace your-backend.up.railway.app with your actual Railway backend URL).
+
+Click Deploy. Vercel will give you a domain (e.g., https://your-frontend-app.vercel.app).
+Part 4: Final Linkage & Verification
+Copy your Live Vercel Frontend URL (e.g., https://your-frontend-app.vercel.app).
+Go back to Railway → Backend Service → Variables.
+Update CORS_ALLOWED_ORIGINS to include your live Vercel URL:
+env
+
+CORS_ALLOWED_ORIGINS=https://your-frontend-app.vercel.app
+Test your deployment:
+Open your Vercel URL in your browser.
+Test Sign In & Registration.
+Verify that requests successfully talk to your Railway backend and read/write to MySQL.
